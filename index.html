@@ -2,713 +2,970 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#004b2b">
-<title>Community Fellowship | TETR</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#123d2c" />
+  <title>Community Fellowship</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-:root {
-  --green: #006b3c;
-  --deep: #004b2b;
-  --bright: #00a651;
-  --lime: #c8ff4d;
-  --ink: #17231c;
-  --muted: #647168;
-  --line: #e1e8e2;
-  --soft: #f4f8f4;
-}
+  <style>
+    :root {
+      --green: #174c36;
+      --green-dark: #103626;
+      --green-light: #eaf4ed;
+      --cream: #f7f8f4;
+      --white: #ffffff;
+      --text: #19251e;
+      --muted: #6b756e;
+      --border: #e2e8e2;
+      --danger: #b42318;
+      --success: #176b40;
+      --shadow: 0 12px 35px rgba(19, 57, 38, 0.07);
+    }
 
-* { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  background: #f7f9f7;
-  color: var(--ink);
-  font-family: 'IBM Plex Sans', Arial, sans-serif;
-  line-height: 1.55;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.topbar {
-  background: var(--deep);
-  color: white;
-  border-bottom: 4px solid var(--bright);
-  text-align: center;
-  padding: 22px 16px;
-}
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.brand-title {
-  color: white;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: .3px;
-  text-decoration: none;
-  cursor: pointer;
-}
+    button, input, select, textarea {
+      font: inherit;
+    }
 
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 38px 24px 70px;
-}
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.hero {
-  background: linear-gradient(115deg, #004b2b, #007b43 70%, #00a651);
-  border-radius: 22px;
-  padding: 42px;
-  color: white;
-}
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #9bc9a9;
+      outline-offset: 2px;
+    }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--lime);
-  margin-bottom: 12px;
-}
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 24px;
+      background: var(--green-dark);
+      color: white;
+    }
 
-h1 {
-  font-size: clamp(36px, 5vw, 58px);
-  line-height: 1.05;
-  letter-spacing: -1.8px;
-  max-width: 760px;
-  margin: 0 0 16px;
-}
+    .brand-title {
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-size: 25px;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -0.7px;
+    }
 
-.hero p {
-  max-width: 670px;
-  color: #e1f3e7;
-  font-size: 16px;
-  margin: 0;
-}
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
 
-.hero-meta {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 24px;
-}
+    .home-hero {
+      padding: 68px 0 38px;
+    }
 
-.pill {
-  border: 1px solid #ffffff55;
-  background: #ffffff12;
-  padding: 7px 12px;
-  border-radius: 99px;
-  font-size: 12px;
-}
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--green);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+    }
 
-.section { margin-top: 38px; }
+    h1, h2, h3, p {
+      overflow-wrap: anywhere;
+    }
 
-.sectionhead {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 16px;
-  margin-bottom: 17px;
-}
+    .home-hero h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.07;
+      letter-spacing: -2px;
+      font-weight: 600;
+    }
 
-.sectionhead h2 {
-  font-size: 25px;
-  letter-spacing: -.5px;
-  margin: 0;
-}
+    .hero-description {
+      max-width: 650px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
 
-.sectionhead p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
+    .section-heading {
+      margin: 20px 0 20px;
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+    }
 
-.fellows {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
+    .fellow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      padding-bottom: 75px;
+    }
 
-.fellow-tile {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 23px;
-  min-height: 190px;
-  box-shadow: 0 4px 18px #163c2110;
-  cursor: pointer;
-  color: var(--ink);
-  font: inherit;
-  transition: transform .15s, border-color .15s, box-shadow .15s;
-}
+    .fellow-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 185px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 3px 12px rgba(19, 57, 38, 0.025);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease,
+                  border-color 180ms ease;
+    }
 
-.fellow-tile:hover {
-  transform: translateY(-3px);
-  border-color: #82bd95;
-  box-shadow: 0 10px 25px #163c2117;
-}
+    .fellow-card:hover {
+      transform: translateY(-4px);
+      border-color: #a9c7b2;
+      box-shadow: var(--shadow);
+    }
 
-.avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 15px;
-  background: var(--deep);
-  color: white;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 21px;
-  margin-bottom: 18px;
-}
+    .avatar {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-.tile-name { font-size: 20px; font-weight: 700; }
+    .fellow-card h3 {
+      margin: 0 0 7px;
+      font-size: 19px;
+      font-weight: 600;
+    }
 
-.tile-sub {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 3px;
-}
+    .fellow-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-.tile-open {
-  margin-top: auto;
-  padding-top: 18px;
-  color: var(--green);
-  font-weight: 700;
-  font-size: 13px;
-}
+    .card-arrow {
+      position: absolute;
+      top: 25px;
+      right: 24px;
+      color: var(--green);
+      font-size: 21px;
+    }
 
-.hidden { display: none !important; }
+    .detail-page {
+      display: none;
+      padding: 28px 0 70px;
+    }
 
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  padding: 10px 14px;
-  color: var(--deep);
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  margin-bottom: 22px;
-}
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 24px;
+      padding: 9px 0;
+      border: 0;
+      background: transparent;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.detail-head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
+    .detail-heading {
+      margin-bottom: 27px;
+    }
 
-.detail-head .avatar { margin: 0; flex-shrink: 0; }
+    .detail-heading .eyebrow {
+      margin-bottom: 8px;
+    }
 
-.detail-head h1 {
-  font-size: clamp(28px, 4vw, 40px);
-  letter-spacing: -1px;
-  margin: 0;
-}
+    .detail-heading h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: -1.2px;
+      font-weight: 600;
+    }
 
-.detail-head p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
+    .detail-heading p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
 
-.detail-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(320px, .8fr);
-  gap: 20px;
-  align-items: start;
-}
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      align-items: start;
+      gap: 22px;
+    }
 
-.panel {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 4px 18px #163c2108;
-  min-width: 0;
-}
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: var(--white);
+      box-shadow: 0 4px 15px rgba(19, 57, 38, 0.035);
+    }
 
-.panel h2 { font-size: 21px; margin: 0 0 5px; }
+    .panel-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--border);
+    }
 
-.subcopy {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 0 0 18px;
-}
+    .panel-header h2 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 600;
+    }
 
-.doc-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 14px 0;
-}
+    .panel-header p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #cbd9ce;
-  border-radius: 8px;
-  padding: 9px 12px;
-  text-decoration: none;
-  font: 600 12px 'IBM Plex Sans', sans-serif;
-  color: var(--deep);
-  background: white;
-  cursor: pointer;
-}
+    .document-frame {
+      display: block;
+      width: 100%;
+      height: 690px;
+      border: 0;
+      background: #fff;
+    }
 
-.docframe {
-  background: #f1f5f1;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 8px;
-}
+    .document-footer {
+      padding: 15px 20px;
+      border-top: 1px solid var(--border);
+    }
 
-.docframe iframe {
-  display: block;
-  width: 100%;
-  height: 650px;
-  border: 1px solid #dbe4dc;
-  border-radius: 7px;
-  background: white;
-}
+    .text-link {
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
 
-.doc-note {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 10px;
-}
+    .text-link:hover {
+      text-decoration: underline;
+    }
 
-.instructions {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 16px 0 20px;
-}
+    .form-content {
+      padding: 22px;
+    }
 
-.instructions h3 {
-  font-size: 14px;
-  margin: 0 0 10px;
-}
+    .instructions {
+      margin-bottom: 24px;
+      padding: 16px;
+      border-radius: 12px;
+      background: var(--green-light);
+    }
 
-.instructions ol {
-  padding-left: 19px;
-  margin: 0;
-}
+    .instructions h3 {
+      margin: 0 0 10px;
+      color: var(--green-dark);
+      font-size: 15px;
+      font-weight: 600;
+    }
 
-.instructions li {
-  font-size: 12px;
-  color: #46554a;
-  margin: 8px 0;
-}
+    .instructions ol {
+      margin: 0;
+      padding-left: 19px;
+      color: #395447;
+      font-size: 13px;
+      line-height: 1.8;
+    }
 
-form { display: grid; gap: 14px; }
-.field { display: grid; gap: 6px; }
+    .field {
+      margin-bottom: 18px;
+    }
 
-label { font-size: 12px; font-weight: 700; }
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-input, select, textarea {
-  width: 100%;
-  border: 1px solid #d3ded5;
-  border-radius: 8px;
-  padding: 12px 13px;
-  font: 14px 'IBM Plex Sans', sans-serif;
-  color: var(--ink);
-  background: white;
-}
+    .required {
+      color: var(--danger);
+    }
 
-input:focus, select:focus, textarea:focus {
-  outline: 2px solid #b6e9c7;
-  border-color: var(--green);
-}
+    .field input,
+    .field select,
+    .field textarea {
+      display: block;
+      width: 100%;
+      min-height: 45px;
+      padding: 11px 12px;
+      border: 1px solid #d8e0d9;
+      border-radius: 9px;
+      background: #fff;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 150ms ease;
+    }
 
-input[readonly] {
-  background: #f1f5f1;
-  color: var(--deep);
-  font-weight: 600;
-}
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--green);
+      outline: none;
+    }
 
-textarea { min-height: 85px; resize: vertical; }
+    .field input[readonly] {
+      background: #f4f6f3;
+      color: #526257;
+      cursor: default;
+    }
 
-button[type="submit"] {
-  border: 0;
-  border-radius: 8px;
-  padding: 13px 16px;
-  background: var(--green);
-  color: white;
-  font: 700 14px 'IBM Plex Sans', sans-serif;
-  cursor: pointer;
-}
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
 
-button:disabled { opacity: .6; cursor: wait; }
+    .field small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-.message {
-  display: none;
-  padding: 11px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
+    .submit-button {
+      display: flex;
+      width: 100%;
+      min-height: 48px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--green);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
 
-.message.success {
-  display: block;
-  background: #e8f7ed;
-  color: #155d31;
-}
+    .submit-button:hover:not(:disabled) {
+      background: var(--green-dark);
+    }
 
-.message.error {
-  display: block;
-  background: #fff0ee;
-  color: #9c2d21;
-}
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
 
-footer {
-  background: #edf3ee;
-  border-top: 1px solid var(--line);
-  padding: 22px 24px;
-  color: var(--muted);
-  font-size: 12px;
-}
+    .form-message {
+      display: none;
+      margin-top: 16px;
+      padding: 13px 14px;
+      border-radius: 9px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
 
-.foot-inner {
-  max-width: 1200px;
-  margin: auto;
-  text-align: center;
-}
+    .form-message.success {
+      display: block;
+      background: #eaf6ed;
+      color: var(--success);
+    }
 
-@media (max-width: 900px) {
-  .fellows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .detail-layout { grid-template-columns: 1fr; }
-  .docframe iframe { height: 520px; }
-}
+    .form-message.error {
+      display: block;
+      background: #fff0ef;
+      color: var(--danger);
+    }
 
-@media (max-width: 560px) {
-  main { padding: 24px 14px 48px; }
-  .hero { padding: 28px 22px; border-radius: 15px; }
-  .fellows { grid-template-columns: 1fr; }
-  .fellow-tile { min-height: 160px; }
-  .docframe iframe { height: 480px; }
-  .panel { padding: 17px; }
-  .detail-head { align-items: flex-start; }
-}
-</style>
+    .form-message.info {
+      display: block;
+      background: #eef3f8;
+      color: #234b70;
+    }
+
+    .footer {
+      padding: 25px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 850px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .document-frame {
+        height: 620px;
+      }
+
+      .fellow-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 540px) {
+      .topbar {
+        min-height: 67px;
+      }
+
+      .brand-title {
+        font-size: 22px;
+      }
+
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .home-hero {
+        padding: 45px 0 28px;
+      }
+
+      .home-hero h1 {
+        letter-spacing: -1.4px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .fellow-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding-bottom: 50px;
+      }
+
+      .fellow-card {
+        min-height: 155px;
+        padding: 20px;
+      }
+
+      .avatar {
+        margin-bottom: 14px;
+      }
+
+      .detail-page {
+        padding-top: 20px;
+      }
+
+      .panel-header,
+      .form-content {
+        padding: 18px;
+      }
+
+      .document-frame {
+        height: 540px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<header class="topbar">
-  <a class="brand-title" href="#" id="homeLogo">Community Fellowship</a>
-</header>
+  <header class="topbar">
+    <a class="brand-title" href="#" id="homeLogo">Community Fellowship</a>
+  </header>
 
-<main>
-  <section id="homePage">
-    <div class="hero">
-      <div class="eyebrow">TETR Community Fellowship</div>
-      <h1>Your work. Your ideas.<br>One shared space.</h1>
-      <p>
-        Choose your name to open your personal assignment space.
-        You'll find your latest assignment brief and submission form together on your page.
-      </p>
-      <div class="hero-meta">
-        <span class="pill">5 fellows</span>
-        <span class="pill">Weekly assignment updates</span>
-        <span class="pill">Your work, all in one place</span>
+  <main>
+    <section id="homePage" class="container">
+      <div class="home-hero">
+        <p class="eyebrow">Your fellowship workspace</p>
+        <h1>Make your work<br>count.</h1>
+        <p class="hero-description">
+          Find your weekly assignments, work on your deliverables, and submit
+          your work through your personal fellowship workspace.
+        </p>
       </div>
-    </div>
 
-    <section class="section">
-      <div class="sectionhead">
-        <div>
-          <h2>Choose your workspace</h2>
-          <p>Open your card to view your brief and submit your work.</p>
-        </div>
-      </div>
-      <div class="fellows" id="fellowCards"></div>
+      <h2 class="section-heading">Choose your workspace</h2>
+      <div id="fellowCards" class="fellow-grid"></div>
     </section>
-  </section>
 
-  <section id="detailPage" class="hidden">
-    <button type="button" class="back-btn" id="backButton">← All fellows</button>
+    <section id="detailPage" class="detail-page">
+      <div class="container">
+        <button type="button" id="backButton" class="back-button">
+          <span aria-hidden="true">←</span> All fellows
+        </button>
 
-    <div class="detail-head">
-      <div class="avatar" id="detailAvatar"></div>
-      <div>
-        <h1 id="detailName"></h1>
-        <p>Your assignment brief and submission page</p>
+        <div class="detail-heading">
+          <p class="eyebrow">Your personal workspace</p>
+          <h1 id="detailFellowName">Fellow workspace</h1>
+          <p>
+            Review your assignment brief and submit each deliverable
+            using the form below.
+          </p>
+        </div>
+
+        <div class="workspace">
+          <section class="panel" aria-labelledby="briefHeading">
+            <div class="panel-header">
+              <h2 id="briefHeading">Your assignment brief</h2>
+              <p>
+                Check the latest instructions and requirements before
+                submitting your work.
+              </p>
+            </div>
+
+            <iframe
+              id="documentFrame"
+              class="document-frame"
+              title="Fellow assignment brief"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+
+            <div class="document-footer">
+              <a
+                id="openDocumentLink"
+                class="text-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer">
+                Open assignment brief in Google Docs ↗
+              </a>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="submissionHeading">
+            <div class="panel-header">
+              <h2 id="submissionHeading">Submit your work</h2>
+              <p>
+                Complete a separate submission for every deliverable.
+              </p>
+            </div>
+
+            <div class="form-content">
+              <div class="instructions">
+                <h3>Before you submit</h3>
+                <ol>
+                  <li>Read the assignment brief carefully.</li>
+                  <li>Complete your deliverable.</li>
+                  <li>Copy the link to your work and make sure it opens.</li>
+                  <li>Ensure anyone with the link can view your work.</li>
+                  <li>Submit one entry for each deliverable.</li>
+                </ol>
+              </div>
+
+              <form id="submissionForm">
+                <div class="field">
+                  <label for="fellowName">Fellow <span class="required">*</span></label>
+                  <input id="fellowName" name="fellow" type="text" readonly required>
+                </div>
+
+                <div class="field">
+                  <label for="email">Email address <span class="required">*</span></label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required>
+                </div>
+
+                <div class="field">
+                  <label for="week">Week <span class="required">*</span></label>
+                  <select id="week" name="week" required>
+                    <option value="">Select week</option>
+                    <option value="Week 1">Week 1</option>
+                    <option value="Week 2">Week 2</option>
+                    <option value="Week 3">Week 3</option>
+                    <option value="Week 4">Week 4</option>
+                    <option value="Week 5">Week 5</option>
+                    <option value="Week 6">Week 6</option>
+                    <option value="Week 7">Week 7</option>
+                    <option value="Week 8">Week 8</option>
+                    <option value="Week 9">Week 9</option>
+                    <option value="Week 10">Week 10</option>
+                    <option value="Week 11">Week 11</option>
+                    <option value="Week 12">Week 12</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="assignment">Assignment title <span class="required">*</span></label>
+                  <input
+                    id="assignment"
+                    name="assignment"
+                    type="text"
+                    placeholder="Enter assignment title"
+                    required>
+                </div>
+
+                <div class="field">
+                  <label for="platform">Platform <span class="required">*</span></label>
+                  <select id="platform" name="platform" required>
+                    <option value="">Select platform</option>
+                    <option value="Drive">Drive</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="YouTube">YouTube</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="link">Link to your work <span class="required">*</span></label>
+                  <input
+                    id="link"
+                    name="link"
+                    type="url"
+                    placeholder="https://..."
+                    inputmode="url"
+                    required>
+                  <small>
+                    Double-check the link permissions before submitting.
+                  </small>
+                </div>
+
+                <div class="field">
+                  <label for="status">Status <span class="required">*</span></label>
+                  <select id="status" name="status" required>
+                    <option value="">Select status</option>
+                    <option value="Posted">Posted</option>
+                    <option value="Yet To Post">Yet To Post</option>
+                    <option value="In Progress">In Progress</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="notes">Additional notes (optional)</label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    placeholder="Anything else you'd like us to know?"></textarea>
+                </div>
+
+                <button id="submitButton" class="submit-button" type="submit">
+                  Submit deliverable <span aria-hidden="true">→</span>
+                </button>
+
+                <div
+                  id="formMessage"
+                  class="form-message"
+                  role="status"
+                  aria-live="polite">
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="detail-layout">
-      <section class="panel">
-        <h2>Your assignment brief</h2>
-        <p class="subcopy">
-          Check the latest instructions here before submitting your work.
-        </p>
+  <footer class="footer">
+    Community Fellowship
+  </footer>
 
-        <div class="doc-actions">
-          <a class="btn" id="openDoc" target="_blank" rel="noopener noreferrer">
-            Open document in a new tab ↗
-          </a>
-        </div>
+  <script>
+    // Google Apps Script web app endpoint.
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycby7Xa2zRzK87Oonvhd9-nzv9hutUlg8YRc2kWsihDmXgPA67ZVjX_2QCbGH9SxJ4QaQjA/exec";
 
-        <div class="docframe">
-          <iframe id="docFrame" title="Assignment brief" loading="lazy"></iframe>
-        </div>
+    const fellows = [
+      {
+        name: "Ariana",
+        id: "1te-6aBv2tazv7bWuTiFYQ59DC220JoirewMh9s_C-68"
+      },
+      {
+        name: "Lara",
+        id: "1e3qta4lK8LON7USg96BurewNs0AibDeo6dcnBz7ctzM"
+      },
+      {
+        name: "Otavio",
+        id: "1RaBipG0-MQkuMeeKJhMzvWEEGSTh_UGCUlofsb80DdU"
+      },
+      {
+        name: "Salem",
+        id: "1H2TJzQ_HIHC8GQxINQYbkvZNcM1zyazSjpkc9sITbPI"
+      },
+      {
+        name: "Shiva",
+        id: "1Kh5wnZEBcGEfBZpqPWBfzuYbtmClrea_jK74elLQdHg"
+      }
+    ];
 
-        <p class="doc-note">
-          If the document does not load, open it in a new tab. You may need to sign in to your Google account.
-        </p>
-      </section>
+    const homePage = document.getElementById("homePage");
+    const detailPage = document.getElementById("detailPage");
+    const fellowCards = document.getElementById("fellowCards");
+    const detailFellowName = document.getElementById("detailFellowName");
+    const fellowNameInput = document.getElementById("fellowName");
+    const documentFrame = document.getElementById("documentFrame");
+    const openDocumentLink = document.getElementById("openDocumentLink");
+    const submissionForm = document.getElementById("submissionForm");
+    const submitButton = document.getElementById("submitButton");
+    const formMessage = document.getElementById("formMessage");
 
-      <aside class="panel">
-        <h2>Submit your work</h2>
-        <p class="subcopy">
-          Once you've completed the assignment, use the form below to share your work.
-        </p>
+    let currentFellow = null;
+    let submissionInProgress = false;
 
-        <div class="instructions">
-          <h3>Before you submit</h3>
-          <ol>
-            <li>Read the assignment brief carefully and complete the required deliverable.</li>
-            <li>Copy the link to your work or published post.</li>
-            <li>Check that the link opens correctly and that others can view it.</li>
-            <li>Select the relevant week, assignment, platform, and status.</li>
-            <li>Submit the form. If you have multiple deliverables, submit each one separately.</li>
-          </ol>
-        </div>
+    function renderFellowCards() {
+      fellowCards.innerHTML = "";
 
-        <form id="submissionForm">
-          <div class="field">
-            <label for="studentName">Your name</label>
-            <input id="studentName" name="studentName" readonly required>
-          </div>
+      fellows.forEach((fellow) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "fellow-card";
+        card.setAttribute("aria-label", "Open " + fellow.name + "'s workspace");
 
-          <div class="field">
-            <label for="email">Email address *</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required>
-          </div>
+        const avatar = document.createElement("span");
+        avatar.className = "avatar";
+        avatar.textContent = fellow.name.charAt(0);
 
-          <div class="field">
-            <label for="week">Week *</label>
-            <input id="week" name="week" type="text" placeholder="e.g. W2" required>
-          </div>
+        const name = document.createElement("h3");
+        name.textContent = fellow.name;
 
-          <div class="field">
-            <label for="assignmentTitle">Assignment *</label>
-            <input id="assignmentTitle" name="assignmentTitle" type="text" placeholder="Assignment title" required>
-          </div>
+        const description = document.createElement("p");
+        description.textContent = "Open your assignments and submit your work.";
 
-          <div class="field">
-            <label for="platform">Platform *</label>
-            <select id="platform" name="platform" required>
-              <option value="">Select platform</option>
-              <option>Drive</option>
-              <option>LinkedIn</option>
-              <option>Instagram</option>
-              <option>YouTube</option>
-              <option>TikTok</option>
-              <option>Other</option>
-            </select>
-          </div>
+        const arrow = document.createElement("span");
+        arrow.className = "card-arrow";
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "↗";
 
-          <div class="field">
-            <label for="submissionUrl">Link to your work *</label>
-            <input id="submissionUrl" name="submissionUrl" type="url" placeholder="https://..." required>
-          </div>
-
-          <div class="field">
-            <label for="postStatus">Status *</label>
-            <select id="postStatus" name="postStatus" required>
-              <option>Posted</option>
-              <option>Yet To Post</option>
-              <option>In Progress</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="notes">Anything else we should know? (optional)</label>
-            <textarea id="notes" name="notes" placeholder="Add a note if needed"></textarea>
-          </div>
-
-          <div class="message" id="formMessage" role="status"></div>
-          <button type="submit" id="submitButton">Submit assignment</button>
-        </form>
-      </aside>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="foot-inner">TETR Community Fellowship</div>
-</footer>
-
-<script>
-// Add your deployed Google Apps Script Web App URL ending in /exec here.
-// Until it is configured, submissions will NOT be saved.
-const API_URL = "https://script.google.com/a/macros/tetr.org/s/AKfycby7Xa2zRzK87Oonvhd9-nzv9hutUlg8YRc2kWsihDmXgPA67ZVjX_2QCbGH9SxJ4QaQjA/exec";
-
-const fellows = [
-  { name: "Ariana", id: "1te-6aBv2tazv7bWuTiFYQ59DC220JoirewMh9s_C-68" },
-  { name: "Lara", id: "1e3qta4lK8LON7USg96BurewNs0AibDeo6dcnBz7ctzM" },
-  { name: "Otavio", id: "1RaBipG0-MQkuMeeKJhMzvWEEGSTh_UGCUlofsb80DdU" },
-  { name: "Salem", id: "1H2TJzQ_HIHC8GQxINQYbkvZNcM1zyazSjpkc9sITbPI" },
-  { name: "Shiva", id: "1Kh5wnZEBcGEfBZpqPWBfzuYbtmClrea_jK74elLQdHg" }
-];
-
-const homePage = document.getElementById("homePage");
-const detailPage = document.getElementById("detailPage");
-const cards = document.getElementById("fellowCards");
-let currentFellow = null;
-
-fellows.forEach(fellow => {
-  const card = document.createElement("button");
-  card.type = "button";
-  card.className = "fellow-tile";
-  card.setAttribute("aria-label", `Open ${fellow.name}'s assignment page`);
-
-  const avatar = document.createElement("span");
-  avatar.className = "avatar";
-  avatar.textContent = fellow.name[0];
-
-  const name = document.createElement("span");
-  name.className = "tile-name";
-  name.textContent = fellow.name;
-
-  const subtitle = document.createElement("span");
-  subtitle.className = "tile-sub";
-  subtitle.textContent = "Community Fellow";
-
-  const open = document.createElement("span");
-  open.className = "tile-open";
-  open.textContent = "View assignments →";
-
-  card.append(avatar, name, subtitle, open);
-  card.addEventListener("click", () => openFellow(fellow));
-  cards.appendChild(card);
-});
-
-function openFellow(fellow) {
-  currentFellow = fellow;
-  homePage.classList.add("hidden");
-  detailPage.classList.remove("hidden");
-
-  document.getElementById("detailAvatar").textContent = fellow.name[0];
-  document.getElementById("detailName").textContent = fellow.name;
-  document.getElementById("studentName").value = fellow.name;
-
-  document.getElementById("docFrame").src =
-    `https://docs.google.com/document/d/${fellow.id}/preview`;
-  document.getElementById("docFrame").title =
-    `${fellow.name}'s assignment brief`;
-  document.getElementById("openDoc").href =
-    `https://docs.google.com/document/d/${fellow.id}/edit`;
-
-  document.getElementById("formMessage").className = "message";
-  history.replaceState(null, "", `#${fellow.name.toLowerCase()}`);
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function showHome() {
-  detailPage.classList.add("hidden");
-  homePage.classList.remove("hidden");
-  document.getElementById("docFrame").src = "about:blank";
-  currentFellow = null;
-  history.replaceState(null, "", window.location.pathname);
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-document.getElementById("backButton").addEventListener("click", showHome);
-
-document.getElementById("homeLogo").addEventListener("click", event => {
-  event.preventDefault();
-  showHome();
-});
-
-function routeFromHash() {
-  const name = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
-  const fellow = fellows.find(f => f.name.toLowerCase() === name);
-  if (fellow) openFellow(fellow);
-}
-
-window.addEventListener("load", routeFromHash);
-
-const form = document.getElementById("submissionForm");
-const message = document.getElementById("formMessage");
-const submitButton = document.getElementById("submitButton");
-
-function showMessage(text, type) {
-  message.textContent = text;
-  message.className = "message " + type;
-}
-
-form.addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const data = {
-    action: "submit",
-    studentName: document.getElementById("studentName").value,
-    email: document.getElementById("email").value.trim(),
-    week: document.getElementById("week").value.trim(),
-    assignmentTitle: document.getElementById("assignmentTitle").value.trim(),
-    platform: document.getElementById("platform").value,
-    submissionUrl: document.getElementById("submissionUrl").value.trim(),
-    postStatus: document.getElementById("postStatus").value,
-    notes: document.getElementById("notes").value.trim()
-  };
-
-  try {
-    const url = new URL(data.submissionUrl);
-    if (!["http:", "https:"].includes(url.protocol)) {
-      throw new Error("Please enter a valid link to your work.");
+        card.append(avatar, name, description, arrow);
+        card.addEventListener("click", () => openFellow(fellow));
+        fellowCards.appendChild(card);
+      });
     }
-  } catch (error) {
-    showMessage(error.message || "Please enter a valid link.", "error");
-    return;
-  }
 
-  if (!API_URL) {
-    showMessage(
-      "Submissions are not enabled yet. Please check back soon or contact the fellowship team.",
-      "error"
-    );
-    return;
-  }
+    function openFellow(fellow) {
+      currentFellow = fellow;
 
-  submitButton.disabled = true;
-  submitButton.textContent = "Submitting...";
+      homePage.style.display = "none";
+      detailPage.style.display = "block";
 
-  try {
-    await fetch(API_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(data)
+      detailFellowName.textContent = fellow.name;
+      fellowNameInput.value = fellow.name;
+
+      const editUrl =
+        "https://docs.google.com/document/d/" + fellow.id + "/edit";
+
+      const previewUrl =
+        "https://docs.google.com/document/d/" + fellow.id + "/preview";
+
+      documentFrame.src = previewUrl;
+      openDocumentLink.href = editUrl;
+
+      submissionForm.reset();
+      fellowNameInput.value = fellow.name;
+      clearMessage();
+
+      history.pushState({ fellow: fellow.name }, "", "#" +
+        encodeURIComponent(fellow.name.toLowerCase()));
+
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    function showHome(updateHistory = true) {
+      currentFellow = null;
+
+      detailPage.style.display = "none";
+      homePage.style.display = "block";
+
+      documentFrame.removeAttribute("src");
+      openDocumentLink.href = "#";
+      submissionForm.reset();
+      clearMessage();
+
+      if (updateHistory && window.location.hash) {
+        history.pushState({}, "", window.location.pathname + window.location.search);
+      }
+
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    function routeFromHash() {
+      const requestedName = decodeURIComponent(
+        window.location.hash.slice(1)
+      ).toLowerCase();
+
+      if (!requestedName) {
+        showHome(false);
+        return;
+      }
+
+      const fellow = fellows.find(
+        (item) => item.name.toLowerCase() === requestedName
+      );
+
+      if (fellow) {
+        openFellowFromRoute(fellow);
+      } else {
+        showHome(false);
+      }
+    }
+
+    function openFellowFromRoute(fellow) {
+      currentFellow = fellow;
+
+      homePage.style.display = "none";
+      detailPage.style.display = "block";
+
+      detailFellowName.textContent = fellow.name;
+      fellowNameInput.value = fellow.name;
+
+      documentFrame.src =
+        "https://docs.google.com/document/d/" + fellow.id + "/preview";
+
+      openDocumentLink.href =
+        "https://docs.google.com/document/d/" + fellow.id + "/edit";
+
+      clearMessage();
+    }
+
+    function clearMessage() {
+      formMessage.textContent = "";
+      formMessage.className = "form-message";
+    }
+
+    function showMessage(message, type) {
+      formMessage.textContent = message;
+      formMessage.className = "form-message " + type;
+    }
+
+    document.getElementById("backButton").addEventListener("click", () => {
+      showHome();
     });
 
-    showMessage(
-      "Your submission request has been sent. If you need help, contact the fellowship team.",
-      "success"
-    );
+    document.getElementById("homeLogo").addEventListener("click", (event) => {
+      event.preventDefault();
+      showHome();
+    });
 
-    form.reset();
-    document.getElementById("studentName").value =
-      currentFellow ? currentFellow.name : "";
-  } catch (error) {
-    showMessage(
-      "We couldn't send your submission. Please try again or contact the fellowship team.",
-      "error"
-    );
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Submit assignment";
-  }
-});
-</script>
+    window.addEventListener("popstate", routeFromHash);
+    window.addEventListener("hashchange", routeFromHash);
+
+    submissionForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (submissionInProgress) return;
+
+      if (!currentFellow) {
+        showMessage("Please select your workspace before submitting.", "error");
+        return;
+      }
+
+      if (!API_URL || !API_URL.endsWith("/exec")) {
+        showMessage(
+          "Submissions are temporarily unavailable. Please contact the fellowship team.",
+          "error"
+        );
+        return;
+      }
+
+      if (!submissionForm.reportValidity()) return;
+
+      const formData = new FormData(submissionForm);
+      const data = {
+        fellow: currentFellow.name,
+        email: String(formData.get("email") || "").trim(),
+        week: String(formData.get("week") || "").trim(),
+        assignment: String(formData.get("assignment") || "").trim(),
+        platform: String(formData.get("platform") || "").trim(),
+        link: String(formData.get("link") || "").trim(),
+        status: String(formData.get("status") || "").trim(),
+        notes: String(formData.get("notes") || "").trim()
+      };
+
+      if (!/^https?:\/\/\S+$/i.test(data.link)) {
+        showMessage("Please enter a valid link beginning with https:// or http://.", "error");
+        return;
+      }
+
+      submissionInProgress = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending submission…";
+      clearMessage();
+
+      try {
+        /*
+         * Apps Script ContentService does not provide a straightforward
+         * browser-readable CORS response. This request sends JSON as text/plain
+         * and uses no-cors, so the browser cannot confirm the server's result.
+         */
+        await fetch(API_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(data)
+        });
+
+        showMessage(
+          "Your submission request has been sent. Please contact the fellowship team if you need confirmation that it was received.",
+          "info"
+        );
+
+        submissionForm.reset();
+        fellowNameInput.value = currentFellow.name;
+
+      } catch (error) {
+        console.error("Submission request failed:", error);
+
+        showMessage(
+          "We couldn't send your submission. Please check your connection and try again.",
+          "error"
+        );
+      } finally {
+        submissionInProgress = false;
+        submitButton.disabled = false;
+        submitButton.innerHTML =
+          'Submit deliverable <span aria-hidden="true">→</span>';
+      }
+    });
+
+    renderFellowCards();
+    routeFromHash();
+  </script>
 </body>
 </html>
