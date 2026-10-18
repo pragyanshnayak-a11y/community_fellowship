@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#004b2b">
-<title>TETR | Community Fellowship</title>
+<title>Community Fellowship | TETR</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
@@ -35,39 +35,17 @@ body {
   background: var(--deep);
   color: white;
   border-bottom: 4px solid var(--bright);
+  text-align: center;
+  padding: 22px 16px;
 }
 
-.nav {
-  max-width: 1200px;
-  margin: auto;
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-}
-
-.brand img {
-  display: block;
-  width: 205px;
-  height: 82px;
-  object-fit: contain;
-  object-position: left center;
-  background: #004b2b;
-  border-radius: 4px;
-}
-
-.navtag {
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #d9f4e2;
+.brand-title {
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 main {
@@ -285,12 +263,6 @@ h1 {
   cursor: pointer;
 }
 
-.btn.primary {
-  background: var(--green);
-  color: white;
-  border-color: var(--green);
-}
-
 .docframe {
   background: #f1f5f1;
   border: 1px solid var(--line);
@@ -311,6 +283,30 @@ h1 {
   font-size: 11px;
   color: var(--muted);
   margin-top: 10px;
+}
+
+.instructions {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0 20px;
+}
+
+.instructions h3 {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.instructions ol {
+  padding-left: 19px;
+  margin: 0;
+}
+
+.instructions li {
+  font-size: 12px;
+  color: #46554a;
+  margin: 8px 0;
 }
 
 form { display: grid; gap: 14px; }
@@ -373,21 +369,6 @@ button:disabled { opacity: .6; cursor: wait; }
   color: #9c2d21;
 }
 
-.info-box {
-  background: var(--soft);
-  border-radius: 10px;
-  padding: 13px;
-  margin-top: 14px;
-}
-
-.info-box strong { font-size: 12px; }
-
-.info-box p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 footer {
   background: #edf3ee;
   border-top: 1px solid var(--line);
@@ -399,10 +380,7 @@ footer {
 .foot-inner {
   max-width: 1200px;
   margin: auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  text-align: center;
 }
 
 @media (max-width: 900px) {
@@ -413,9 +391,6 @@ footer {
 
 @media (max-width: 560px) {
   main { padding: 24px 14px 48px; }
-  .nav { padding: 10px 14px; }
-  .brand img { width: 145px; height: 65px; }
-  .navtag { font-size: 9px; letter-spacing: 1px; }
   .hero { padding: 28px 22px; border-radius: 15px; }
   .fellows { grid-template-columns: 1fr; }
   .fellow-tile { min-height: 160px; }
@@ -428,16 +403,10 @@ footer {
 
 <body>
 <header class="topbar">
-  <div class="nav">
-    <a class="brand" href="#" id="homeLogo" aria-label="TETR Community Fellowship home">
-      <img src="./logo.png" alt="TETR College of Business logo">
-    </a>
-    <div class="navtag">Community Fellowship</div>
-  </div>
+  <a class="brand-title" href="#" id="homeLogo">Community Fellowship</a>
 </header>
 
 <main>
-  <!-- HOME: only fellow cards appear here -->
   <section id="homePage">
     <div class="hero">
       <div class="eyebrow">TETR Community Fellowship</div>
@@ -449,7 +418,7 @@ footer {
       <div class="hero-meta">
         <span class="pill">5 fellows</span>
         <span class="pill">Weekly assignment updates</span>
-        <span class="pill">Submission portal</span>
+        <span class="pill">Your work, all in one place</span>
       </div>
     </div>
 
@@ -464,7 +433,6 @@ footer {
     </section>
   </section>
 
-  <!-- INDIVIDUAL WORKSPACE -->
   <section id="detailPage" class="hidden">
     <button type="button" class="back-btn" id="backButton">← All fellows</button>
 
@@ -472,20 +440,20 @@ footer {
       <div class="avatar" id="detailAvatar"></div>
       <div>
         <h1 id="detailName"></h1>
-        <p>Individual assignment brief and submission form</p>
+        <p>Your assignment brief and submission page</p>
       </div>
     </div>
 
     <div class="detail-layout">
       <section class="panel">
-        <h2>Assignment brief</h2>
+        <h2>Your assignment brief</h2>
         <p class="subcopy">
-          This embedded document reflects updates made to the original Google Doc.
+          Check the latest instructions here before submitting your work.
         </p>
 
         <div class="doc-actions">
           <a class="btn" id="openDoc" target="_blank" rel="noopener noreferrer">
-            Open in Google Docs ↗
+            Open document in a new tab ↗
           </a>
         </div>
 
@@ -494,19 +462,30 @@ footer {
         </div>
 
         <p class="doc-note">
-          If the document does not load, check its sharing permissions or open it directly in Google Docs.
+          If the document does not load, open it in a new tab. You may need to sign in to your Google account.
         </p>
       </section>
 
       <aside class="panel">
         <h2>Submit your work</h2>
         <p class="subcopy">
-          Your name is pre-selected. Submit a separate entry for each deliverable you want tracked.
+          Once you've completed the assignment, use the form below to share your work.
         </p>
+
+        <div class="instructions">
+          <h3>Before you submit</h3>
+          <ol>
+            <li>Read the assignment brief carefully and complete the required deliverable.</li>
+            <li>Copy the link to your work or published post.</li>
+            <li>Check that the link opens correctly and that others can view it.</li>
+            <li>Select the relevant week, assignment, platform, and status.</li>
+            <li>Submit the form. If you have multiple deliverables, submit each one separately.</li>
+          </ol>
+        </div>
 
         <form id="submissionForm">
           <div class="field">
-            <label for="studentName">Fellow</label>
+            <label for="studentName">Your name</label>
             <input id="studentName" name="studentName" readonly required>
           </div>
 
@@ -539,7 +518,7 @@ footer {
           </div>
 
           <div class="field">
-            <label for="submissionUrl">Published work / submission link *</label>
+            <label for="submissionUrl">Link to your work *</label>
             <input id="submissionUrl" name="submissionUrl" type="url" placeholder="https://..." required>
           </div>
 
@@ -553,33 +532,25 @@ footer {
           </div>
 
           <div class="field">
-            <label for="notes">Notes (optional)</label>
-            <textarea id="notes" name="notes" placeholder="Any context for the team"></textarea>
+            <label for="notes">Anything else we should know? (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Add a note if needed"></textarea>
           </div>
 
           <div class="message" id="formMessage" role="status"></div>
           <button type="submit" id="submitButton">Submit assignment</button>
         </form>
-
-        <div class="info-box">
-          <strong>Before submitting</strong>
-          <p>Ensure the link is accessible to the fellowship team. Google Sheets tracking will activate once the backend is connected.</p>
-        </div>
       </aside>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="foot-inner">
-    <span>TETR College of Business · Community Fellowship</span>
-    <span>Build something worth sharing.</span>
-  </div>
+  <div class="foot-inner">TETR Community Fellowship</div>
 </footer>
 
 <script>
 // Add your deployed Google Apps Script Web App URL ending in /exec here.
-// Until it is configured, submissions will NOT be saved to Google Sheets.
+// Until it is configured, submissions will NOT be saved.
 const API_URL = "";
 
 const fellows = [
@@ -595,7 +566,6 @@ const detailPage = document.getElementById("detailPage");
 const cards = document.getElementById("fellowCards");
 let currentFellow = null;
 
-// Create separate fellow cards on the homepage.
 fellows.forEach(fellow => {
   const card = document.createElement("button");
   card.type = "button";
@@ -616,7 +586,7 @@ fellows.forEach(fellow => {
 
   const open = document.createElement("span");
   open.className = "tile-open";
-  open.textContent = "Open workspace →";
+  open.textContent = "View assignments →";
 
   card.append(avatar, name, subtitle, open);
   card.addEventListener("click", () => openFellow(fellow));
@@ -625,7 +595,6 @@ fellows.forEach(fellow => {
 
 function openFellow(fellow) {
   currentFellow = fellow;
-
   homePage.classList.add("hidden");
   detailPage.classList.remove("hidden");
 
@@ -635,15 +604,12 @@ function openFellow(fellow) {
 
   document.getElementById("docFrame").src =
     `https://docs.google.com/document/d/${fellow.id}/preview`;
-
   document.getElementById("docFrame").title =
     `${fellow.name}'s assignment brief`;
-
   document.getElementById("openDoc").href =
     `https://docs.google.com/document/d/${fellow.id}/edit`;
 
   document.getElementById("formMessage").className = "message";
-
   history.replaceState(null, "", `#${fellow.name.toLowerCase()}`);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -653,7 +619,6 @@ function showHome() {
   homePage.classList.remove("hidden");
   document.getElementById("docFrame").src = "about:blank";
   currentFellow = null;
-
   history.replaceState(null, "", window.location.pathname);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -665,7 +630,6 @@ document.getElementById("homeLogo").addEventListener("click", event => {
   showHome();
 });
 
-// Allow direct links like #ariana or #otavio.
 function routeFromHash() {
   const name = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
   const fellow = fellows.find(f => f.name.toLowerCase() === name);
@@ -701,16 +665,16 @@ form.addEventListener("submit", async event => {
   try {
     const url = new URL(data.submissionUrl);
     if (!["http:", "https:"].includes(url.protocol)) {
-      throw new Error("Please enter a valid submission link.");
+      throw new Error("Please enter a valid link to your work.");
     }
   } catch (error) {
-    showMessage(error.message || "Please enter a valid submission link.", "error");
+    showMessage(error.message || "Please enter a valid link.", "error");
     return;
   }
 
   if (!API_URL) {
     showMessage(
-      "Google Sheets is not connected yet. Your submission has not been saved.",
+      "Submissions are not enabled yet. Please check back soon or contact the fellowship team.",
       "error"
     );
     return;
@@ -720,8 +684,6 @@ form.addEventListener("submit", async event => {
   submitButton.textContent = "Submitting...";
 
   try {
-    // no-cors cannot confirm the server's response. We will improve this
-    // when configuring and testing the Apps Script backend.
     await fetch(API_URL, {
       method: "POST",
       mode: "no-cors",
@@ -730,7 +692,7 @@ form.addEventListener("submit", async event => {
     });
 
     showMessage(
-      "Submission request sent. Please check the tracker sheet to confirm it was recorded.",
+      "Your submission request has been sent. If you need help, contact the fellowship team.",
       "success"
     );
 
@@ -739,7 +701,7 @@ form.addEventListener("submit", async event => {
       currentFellow ? currentFellow.name : "";
   } catch (error) {
     showMessage(
-      "Could not send your submission. Check your connection and try again.",
+      "We couldn't send your submission. Please try again or contact the fellowship team.",
       "error"
     );
   } finally {
