@@ -2,335 +2,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TETR | Community Fellowship</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TETR | Community Fellowship</title>
+  <meta name="theme-color" content="#10120f" />
 
-<style>
-:root {
-  --dark: #174a2a;
-  --green: #459b5a;
-  --light: #eef5ef;
-  --text: #17251b;
-  --muted: #657469;
-  --border: #dce5dd;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #f8faf8;
-  color: var(--text);
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-.container { max-width: 1120px; width: 92%; margin: auto; }
-nav {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 22px 0;
-}
-.logo { display: flex; align-items: center; gap: 12px; font-weight: 700; }
-.logo-mark {
-  background: var(--dark); color: white; padding: 9px 13px;
-  letter-spacing: 4px; font-size: 19px;
-}
-.logo small { display: block; color: var(--muted); font-weight: 400; letter-spacing: 0; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; cursor: pointer; }
-.hero {
-  background: linear-gradient(120deg, var(--dark), var(--green));
-  padding: 58px 48px; border-radius: 22px; color: white;
-}
-.eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
-.hero h1 { font-size: clamp(36px, 5vw, 58px); line-height: 1.08; margin: 20px 0; }
-.hero p { max-width: 620px; line-height: 1.7; color: #e1eee3; }
-.btn {
-  display: inline-block; border: none; border-radius: 9px;
-  padding: 12px 17px; font-weight: 600; margin: 8px 5px 0 0;
-}
-.btn-white { background: white; color: var(--dark); }
-.btn-green { background: var(--green); color: white; }
-.btn-outline { border: 1px solid var(--border); background: white; color: var(--dark); }
-section { padding-top: 44px; }
-.section-heading {
-  display: flex; justify-content: space-between; align-items: end;
-  gap: 15px; margin-bottom: 20px;
-}
-h2 { margin: 0 0 7px; font-size: 27px; }
-.subtext { color: var(--muted); margin: 0; line-height: 1.6; }
-.badge {
-  background: var(--light); color: var(--dark); border-radius: 30px;
-  padding: 7px 11px; font-size: 12px; font-weight: 600;
-}
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-.card {
-  background: white; border: 1px solid var(--border);
-  border-radius: 15px; padding: 21px;
-}
-.avatar {
-  width: 44px; height: 44px; display: grid; place-items: center;
-  background: var(--light); color: var(--dark); border-radius: 12px;
-  font-weight: 700; margin-bottom: 18px;
-}
-.card h3 { margin: 0 0 8px; font-size: 18px; }
-.card p { color: var(--muted); line-height: 1.6; font-size: 14px; }
-.assignment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.assignment-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: 15px; padding: 23px;
-  display: flex; flex-direction: column;
-}
-.assignment-card h3 { font-size: 22px; margin: 18px 0 8px; }
-.assignment-card .brief { color: var(--muted); line-height: 1.7; white-space: pre-wrap; }
-.card-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; border-top: 1px solid #edf1ed; padding-top: 15px; margin-top: auto;
-}
-.empty {
-  padding: 30px; text-align: center; background: white;
-  border: 1px dashed var(--border); border-radius: 14px; color: var(--muted);
-}
-footer {
-  display: flex; justify-content: space-between; gap: 15px;
-  padding: 45px 0 28px; color: var(--muted); font-size: 12px;
-}
-.modal {
-  display: none; position: fixed; inset: 0; z-index: 10;
-  background: #07170dcc; padding: 20px; overflow: auto;
-  align-items: center; justify-content: center;
-}
-.modal-box {
-  width: 100%; max-width: 570px; background: white;
-  padding: 28px; border-radius: 18px; max-height: 90vh; overflow: auto;
-}
-.modal-box h2 { margin-bottom: 12px; }
-.field { margin: 16px 0; }
-.field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 7px; }
-.field input, .field textarea {
-  width: 100%; border: 1px solid var(--border); border-radius: 8px;
-  padding: 12px; font: inherit; background: white;
-}
-.field textarea { min-height: 100px; resize: vertical; }
-.status { margin: 12px 0; font-size: 14px; }
-@media(max-width: 800px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .hero { padding: 35px 25px; }
-}
-@media(max-width: 520px) {
-  .grid, .assignment-grid { grid-template-columns: 1fr; }
-  .hero { padding: 30px 22px; }
-  .section-heading { align-items: start; flex-direction: column; }
-  footer { flex-direction: column; }
-}
-</style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #10120f;
+      --panel: #191c17;
+      --panel-light: #22261f;
+      --green: #c7ff4d;
+      --text: #f4f5ef;
+      --muted: #a0a59a;
+      --border: #34392f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero {
+      padding: 76px 0 60px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      max-width: 800px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      color: var(--green);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 32px 0 48px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: 27px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .fellow-grid,
+    .assignment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .fellow,
+    .assignment,
+    .submission-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 23px;
+    }
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--green);
+      color: #11140d;
+      border-radius: 50%;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .fellow h3,
+    .assignment h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .fellow p,
+    .assignment p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #2b3520;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .assignment-number {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .assignment a {
+      display: inline-block;
+      margin-top: 17px;
+      color: var(--green);
+      font-size: 13px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .submission-panel {
+      max-width: 760px;
+    }
+
+    .submission-panel > p {
+      color: var(--muted);
+      margin: 8px 0 25px;
+      font-size: 14px;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: #10120f;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 13px 14px;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 1px solid var(--green);
+      border-color: var(--green);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      background: var(--green);
+      color: #11140d;
+      font: inherit;
+      font-weight: 700;
+      padding: 14px 20px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .message.success {
+      display: block;
+      background: #26351c;
+      color: var(--green);
+    }
+
+    .message.error {
+      display: block;
+      background: #3a211f;
+      color: #ffb4a9;
+    }
+
+    footer {
+      margin-top: 30px;
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .fellow-grid,
+      .assignment-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fellow-grid,
+      .assignment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 5px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
-
-<nav>
-  <a class="logo" href="#">
-    <span class="logo-mark">TETR</span>
-    <span>Community Fellowship<small>Build. Share. Learn.</small></span>
-  </a>
-  <a href="#assignments" style="color:var(--dark);font-weight:600">Assignments ↓</a>
-</nav>
-
-<header class="hero">
-  <div class="eyebrow">TETR College of Business · Community Fellowship</div>
-  <h1>Stories worth sharing.<br>Work worth showing.</h1>
-  <p>
-    A shared space for Community Fellows to document their experiences,
-    explore weekly assignments, and share the work they create at TETR.
-  </p>
-  <a class="btn btn-white" href="#assignments">Explore assignments ↗</a>
-  <a class="btn btn-green" href="#fellows">Meet the fellows</a>
-</header>
-
-<section id="fellows">
-  <div class="section-heading">
-    <div>
-      <h2>Meet the fellows</h2>
-      <p class="subtext">The people capturing life, learning, and building at TETR.</p>
+  <header>
+    <div class="container nav">
+      <div class="logo">TETR<span>.</span></div>
+      <div class="nav-label">Community Fellowship Portal</div>
     </div>
-    <span class="badge" id="fellowCount">4 fellows</span>
-  </div>
-  <div class="grid" id="fellowGrid"></div>
-</section>
+  </header>
 
-<section id="assignments">
-  <div class="section-heading">
-    <div>
-      <h2>Weekly assignments</h2>
-      <p class="subtext">Explore the brief, check the deadline, and share your work.</p>
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="eyebrow">Learn. Create. Share.</div>
+        <h1>Ideas are good.<br /><span>Building is better.</span></h1>
+        <p>
+          Welcome to the TETR Community Fellowship. Find your assignments,
+          explore ideas, and submit your work, all in one place.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>5</strong>
+            <span>Community Fellows</span>
+          </div>
+          <div class="stat">
+            <strong>Year-round</strong>
+            <span>Fellowship programme</span>
+          </div>
+          <div class="stat">
+            <strong>One space</strong>
+            <span>For assignments and submissions</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="fellows">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">The community</div>
+            <h2>Meet the fellows</h2>
+          </div>
+          <p>Five people. Plenty of perspectives.</p>
+        </div>
+
+        <div class="fellow-grid" id="fellowGrid"></div>
+      </section>
+
+      <section id="assignments">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Your next challenge</div>
+            <h2>Assignments</h2>
+          </div>
+          <p>Explore the briefs and get started.</p>
+        </div>
+
+        <div class="assignment-grid" id="assignmentGrid"></div>
+      </section>
+
+      <section id="submit">
+        <div class="eyebrow">Show us what you've got</div>
+        <div class="submission-panel">
+          <h2>Submit your work</h2>
+          <p>
+            Share a link to your completed assignment. Make sure the link
+            is accessible to the fellowship team.
+          </p>
+
+          <form id="submissionForm">
+            <div class="field">
+              <label for="studentName">Your name *</label>
+              <select id="studentName" required>
+                <option value="">Select your name</option>
+                <option>Ariana</option>
+                <option>Lara</option>
+                <option>Otavio</option>
+                <option>Salem</option>
+                <option>Shiva</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address *</label>
+              <input id="email" type="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <label for="assignmentTitle">Assignment *</label>
+              <select id="assignmentTitle" required>
+                <option value="">Select an assignment</option>
+                <option>Employability Gap Report</option>
+                <option>Unusual Startup Story</option>
+                <option>TETR Dispatch</option>
+                <option>Reading List</option>
+                <option>Other / Custom Assignment</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="submissionUrl">Submission link *</label>
+              <input
+                id="submissionUrl"
+                type="url"
+                placeholder="https://docs.google.com/..."
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="notes">Notes (optional)</label>
+              <textarea
+                id="notes"
+                placeholder="Anything you'd like the team to know?"
+              ></textarea>
+            </div>
+
+            <div id="formMessage" class="message" role="status"></div>
+
+            <button type="submit" id="submitButton">Submit assignment ↗</button>
+          </form>
+        </div>
+      </section>
     </div>
-    <span class="badge" id="assignmentCount">0 assignments</span>
-  </div>
-  <div class="assignment-grid" id="assignmentGrid"></div>
-</section>
+  </main>
 
-<footer>
-  <span>© <span id="year"></span> TETR Community Fellowship</span>
-  <span>Learn by doing. Share what you learn.</span>
-</footer>
-</div>
-
-<!-- Submission window -->
-<div class="modal" id="submissionModal">
-  <div class="modal-box">
-    <div style="display:flex;justify-content:space-between;gap:15px">
-      <span class="badge">Assignment submission</span>
-      <button class="btn btn-outline" onclick="closeModal()">Close</button>
+  <footer>
+    <div class="container">
+      TETR Community Fellowship · Keep building.
     </div>
-    <h2 id="modalTitle" style="margin-top:20px">Submit your work</h2>
-    <p class="subtext" id="modalBrief"></p>
+  </footer>
 
-    <form id="submissionForm">
-      <div class="field">
-        <label for="studentName">Your name *</label>
-        <input id="studentName" required placeholder="Full name">
-      </div>
-      <div class="field">
-        <label for="studentEmail">Email address *</label>
-        <input id="studentEmail" type="email" required placeholder="you@example.com">
-      </div>
-      <div class="field">
-        <label for="submissionUrl">Link to your work *</label>
-        <input id="submissionUrl" type="url" required
-          placeholder="YouTube, LinkedIn, Google Drive, etc.">
-      </div>
-      <div class="field">
-        <label for="submissionNotes">Notes (optional)</label>
-        <textarea id="submissionNotes" placeholder="Anything you'd like to add"></textarea>
-      </div>
-      <p class="status" id="formStatus"></p>
-      <button class="btn btn-green" type="submit">Submit assignment ↗</button>
-    </form>
-  </div>
-</div>
+  <script>
+    // STEP 2: Add your deployed Google Apps Script /exec URL here.
+    // Leave empty for demo mode. Demo submissions are NOT saved to Google Sheets.
+    const API_URL = "";
 
-<script>
-/*
-  DEMO MODE:
-  This file stores data in the current browser only.
-  For a shared live website, connect it to a backend and Google Sheets.
-*/
+    const fellows = [
+      "Ariana",
+      "Lara",
+      "Otavio",
+      "Salem",
+      "Shiva"
+    ];
 
-const fellows = [
-  { name: "Fellow Name 1", track: "Community Fellow" },
-  { name: "Fellow Name 2", track: "Community Fellow" },
-  { name: "Fellow Name 3", track: "Community Fellow" },
-  { name: "Fellow Name 4", track: "Community Fellow" }
-];
+    // These assignment cards are examples. Edit them to match your actual briefs.
+    // Assignment publishing is currently static, not connected to Google Sheets.
+    const assignments = [
+      {
+        number: "ASSIGNMENT 01",
+        title: "The Employability Gap",
+        description:
+          "Explore the gap between what employers seek and what emerging professionals bring to the table.",
+        category: "Research & Insights"
+      },
+      {
+        number: "ASSIGNMENT 02",
+        title: "An Unusual Startup Story",
+        description:
+          "Find an unconventional startup story and unpack what makes its journey worth learning from.",
+        category: "Storytelling"
+      },
+      {
+        number: "ASSIGNMENT 03",
+        title: "TETR Dispatch",
+        description:
+          "Help bring the TETR community to life through ideas, updates, and stories worth sharing.",
+        category: "Community"
+      },
+      {
+        number: "ASSIGNMENT 04",
+        title: "The Reading List",
+        description:
+          "Curate useful reads, ideas, and resources that make people think differently.",
+        category: "Curation"
+      }
+    ];
 
-const starterAssignments = [
-  {
-    id: "assignment-1",
-    title: "A Day in My Life at TETR",
-    brief: "Create a video giving viewers a glimpse into your daily life at TETR. Capture classes, Capstone work, team interactions, campus life, and moments beyond the classroom.",
-    format: "Horizontal video",
-    platform: "YouTube",
-    deadline: "Add deadline",
-    instructions: "Upload your video and paste the link in the submission form."
-  },
-  {
-    id: "assignment-2",
-    title: "Food & Dining in Shanghai",
-    brief: "Give viewers a glimpse into food and dining as a student in Shanghai. Show where you eat, what meals cost, how you manage food, and options for different dietary preferences.",
-    format: "Video",
-    platform: "YouTube",
-    deadline: "Add deadline",
-    instructions: "Upload your video and paste the link in the submission form."
-  }
-];
+    const fellowGrid = document.getElementById("fellowGrid");
+    const assignmentGrid = document.getElementById("assignmentGrid");
 
-let assignments = JSON.parse(localStorage.getItem("tetrAssignments") || "null") || starterAssignments;
-let submissions = JSON.parse(localStorage.getItem("tetrSubmissions") || "[]");
-let selectedAssignment = null;
+    fellows.forEach((name) => {
+      const card = document.createElement("article");
+      card.className = "fellow";
 
-function renderFellows() {
-  document.getElementById("fellowCount").textContent = fellows.length + " fellows";
-  document.getElementById("fellowGrid").innerHTML = fellows.map(f => {
-    const initials = f.name.split(/\s+/).map(w => w[0]).join("").slice(0,2).toUpperCase();
-    return `<article class="card">
-      <div class="avatar">${initials}</div>
-      <h3>${escapeHTML(f.name)}</h3>
-      <p>${escapeHTML(f.track)}</p>
-    </article>`;
-  }).join("");
-}
+      const avatar = document.createElement("div");
+      avatar.className = "avatar";
+      avatar.textContent = name.charAt(0);
 
-function renderAssignments() {
-  document.getElementById("assignmentCount").textContent = assignments.length + " assignments";
-  const grid = document.getElementById("assignmentGrid");
+      const heading = document.createElement("h3");
+      heading.textContent = name;
 
-  if (!assignments.length) {
-    grid.innerHTML = '<div class="empty">New assignments will appear here soon.</div>';
-    return;
-  }
+      const description = document.createElement("p");
+      description.textContent = "TETR Community Fellow";
 
-  grid.innerHTML = assignments.map(a => `
-    <article class="assignment-card">
-      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
-        <span class="badge">${escapeHTML(a.platform || "Assignment")}</span>
-        <small style="color:var(--muted)">${escapeHTML(a.deadline || "Deadline TBC")}</small>
-      </div>
-      <h3>${escapeHTML(a.title)}</h3>
-      <p class="brief">${escapeHTML(a.brief)}</p>
-      <p class="subtext"><strong>Format:</strong> ${escapeHTML(a.format || "As described in the brief")}</p>
-      <div class="card-bottom">
-        <small style="color:var(--muted)">Ready for submission</small>
-        <button class="btn btn-green" onclick="openSubmission('${a.id}')">Submit work ↗</button>
-      </div>
-    </article>
-  `).join("");
-}
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = "Fellowship Programme";
 
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  })[char]);
-}
+      card.append(avatar, heading, description, tag);
+      fellowGrid.appendChild(card);
+    });
 
-function openSubmission(id) {
-  selectedAssignment = assignments.find(a => a.id === id);
-  if (!selectedAssignment) return;
-  document.getElementById("modalTitle").textContent = selectedAssignment.title;
-  document.getElementById("modalBrief").textContent =
-    selectedAssignment.brief + (selectedAssignment.instructions ? " " + selectedAssignment.instructions : "");
-  document.getElementById("formStatus").textContent = "";
-  document.getElementById("submissionModal").style.display = "flex";
-}
+    assignments.forEach((assignment, index) => {
+      const card = document.createElement("article");
+      card.className = "assignment";
 
-function closeModal() {
-  document.getElementById("submissionModal").style.display = "none";
-}
+      const number = document.createElement("div");
+      number.className = "assignment-number";
+      number.textContent = assignment.number;
 
-document.getElementById("submissionForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+      const heading = document.createElement("h3");
+      heading.textContent = assignment.title;
 
-  if (!selectedAssignment) return;
+      const description = document.createElement("p");
+      description.textContent = assignment.description;
 
-  const submission = {
-    assignment: selectedAssignment.title,
-    name: document.getElementById("studentName").value.trim(),
-    email: document.getElementById("studentEmail").value.trim(),
-    url: document.getElementById("submissionUrl").value.trim(),
-    notes: document.getElementById("submissionNotes").value.trim(),
-    submittedAt: new Date().toISOString()
-  };
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = assignment.category;
 
-  submissions.push(submission);
-  localStorage.setItem("tetrSubmissions", JSON.stringify(submissions));
+      const link = document.createElement("a");
+      link.href = "#submit";
+      link.textContent = "Submit your work ↗";
+      link.addEventListener("click", () => {
+        document.getElementById("assignmentTitle").selectedIndex = index + 1;
+      });
 
-  document.getElementById("formStatus").textContent =
-    "Demo submission saved in this browser. It has NOT been sent to Google Sheets.";
-  document.getElementById("formStatus").style.color = "var(--dark)";
-  document.getElementById("submissionForm").reset();
-});
+      card.append(number, heading, description, tag, link);
+      assignmentGrid.appendChild(card);
+    });
 
-document.getElementById("year").textContent = new Date().getFullYear();
-renderFellows();
-renderAssignments();
-</script>
+    const form = document.getElementById("submissionForm");
+    const message = document.getElementById("formMessage");
+    const submitButton = document.getElementById("submitButton");
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const data = {
+        action: "submit",
+        studentName: document.getElementById("studentName").value,
+        email: document.getElementById("email").value.trim(),
+        assignmentTitle: document.getElementById("assignmentTitle").value,
+        submissionUrl: document.getElementById("submissionUrl").value.trim(),
+        notes: document.getElementById("notes").value.trim()
+      };
+
+      try {
+        const parsedUrl = new URL(data.submissionUrl);
+
+        if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+          throw new Error("Please enter a valid HTTP or HTTPS submission link.");
+        }
+      } catch (error) {
+        showMessage(
+          error.message || "Please enter a valid submission link.",
+          "error"
+        );
+        return;
+      }
+
+      if (!API_URL) {
+        showMessage(
+          "Demo mode: your form is valid, but nothing has been saved. Add your Google Apps Script URL to API_URL to enable submissions.",
+          "error"
+        );
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+      message.className = "message";
+
+      try {
+        // Apps Script may not expose CORS response headers to browser JavaScript.
+        // no-cors sends the request but cannot confirm whether it was saved.
+        await fetch(API_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(data)
+        });
+
+        showMessage(
+          "Your submission request has been sent. Please contact the fellowship team if you need confirmation that it was recorded.",
+          "success"
+        );
+
+        form.reset();
+      } catch (error) {
+        showMessage(
+          "We couldn't send your submission. Please check your connection and try again.",
+          "error"
+        );
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit assignment ↗";
+      }
+    });
+  </script>
 </body>
 </html>
