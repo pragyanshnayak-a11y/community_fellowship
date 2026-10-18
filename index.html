@@ -34,24 +34,33 @@ body {
 .topbar {
   background: var(--deep);
   color: white;
+  border-bottom: 4px solid var(--bright);
 }
 
 .nav {
   max-width: 1200px;
   margin: auto;
-  padding: 16px 24px;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
 .brand img {
   display: block;
-  width: 190px;
-  max-height: 72px;
+  width: 205px;
+  height: 82px;
   object-fit: contain;
   object-position: left center;
+  background: #004b2b;
+  border-radius: 4px;
 }
 
 .navtag {
@@ -64,7 +73,7 @@ body {
 main {
   max-width: 1200px;
   margin: auto;
-  padding: 42px 24px 70px;
+  padding: 38px 24px 70px;
 }
 
 .hero {
@@ -137,70 +146,129 @@ h1 {
 
 .fellows {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
-.fellow-card {
+.fellow-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   background: white;
   border: 1px solid var(--line);
   border-radius: 16px;
-  overflow: hidden;
+  padding: 23px;
+  min-height: 190px;
   box-shadow: 0 4px 18px #163c2110;
+  cursor: pointer;
+  color: var(--ink);
+  font: inherit;
+  transition: transform .15s, border-color .15s, box-shadow .15s;
 }
 
-.cardhead {
-  padding: 19px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border-bottom: 1px solid var(--line);
-}
-
-.person {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.fellow-tile:hover {
+  transform: translateY(-3px);
+  border-color: #82bd95;
+  box-shadow: 0 10px 25px #163c2117;
 }
 
 .avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
   background: var(--deep);
   color: white;
   display: grid;
   place-items: center;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 21px;
+  margin-bottom: 18px;
 }
 
-.person h3 { margin: 0; font-size: 18px; }
+.tile-name { font-size: 20px; font-weight: 700; }
 
-.person small {
-  display: block;
+.tile-sub {
+  font-size: 13px;
   color: var(--muted);
-  font-size: 12px;
+  margin-top: 3px;
 }
 
-.status {
-  font-size: 11px;
+.tile-open {
+  margin-top: auto;
+  padding-top: 18px;
   color: var(--green);
-  background: #e8f7ed;
-  padding: 5px 9px;
-  border-radius: 99px;
-  font-weight: 600;
-  white-space: nowrap;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.hidden { display: none !important; }
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 14px;
+  color: var(--deep);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+
+.detail-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.detail-head .avatar { margin: 0; flex-shrink: 0; }
+
+.detail-head h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.detail-head p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, .8fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 18px #163c2108;
+  min-width: 0;
+}
+
+.panel h2 { font-size: 21px; margin: 0 0 5px; }
+
+.subcopy {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 18px;
 }
 
 .doc-actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  padding: 12px 20px;
-  background: #fbfdfb;
-  border-bottom: 1px solid var(--line);
+  margin: 14px 0;
 }
 
 .btn {
@@ -209,7 +277,7 @@ h1 {
   justify-content: center;
   border: 1px solid #cbd9ce;
   border-radius: 8px;
-  padding: 8px 11px;
+  padding: 9px 12px;
   text-decoration: none;
   font: 600 12px 'IBM Plex Sans', sans-serif;
   color: var(--deep);
@@ -224,53 +292,31 @@ h1 {
 }
 
 .docframe {
-  padding: 12px;
   background: #f1f5f1;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
 }
 
 .docframe iframe {
   display: block;
   width: 100%;
-  height: 390px;
+  height: 650px;
   border: 1px solid #dbe4dc;
-  border-radius: 8px;
+  border-radius: 7px;
   background: white;
 }
 
 .doc-note {
   font-size: 11px;
   color: var(--muted);
-  padding: 0 20px 15px;
+  margin-top: 10px;
 }
 
-.submit-layout {
-  display: grid;
-  grid-template-columns: 1fr .85fr;
-  gap: 18px;
-}
-
-.panel {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 24px;
-}
-
-.panel h3 { margin: 0; font-size: 20px; }
-
-.subcopy {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 6px 0 22px;
-}
-
-form { display: grid; gap: 15px; }
+form { display: grid; gap: 14px; }
 .field { display: grid; gap: 6px; }
 
-label {
-  font-size: 12px;
-  font-weight: 700;
-}
+label { font-size: 12px; font-weight: 700; }
 
 input, select, textarea {
   width: 100%;
@@ -287,7 +333,13 @@ input:focus, select:focus, textarea:focus {
   border-color: var(--green);
 }
 
-textarea { min-height: 90px; resize: vertical; }
+input[readonly] {
+  background: #f1f5f1;
+  color: var(--deep);
+  font-weight: 600;
+}
+
+textarea { min-height: 85px; resize: vertical; }
 
 button[type="submit"] {
   border: 0;
@@ -323,15 +375,15 @@ button:disabled { opacity: .6; cursor: wait; }
 
 .info-box {
   background: var(--soft);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 13px;
   margin-top: 14px;
 }
 
-.info-box strong { font-size: 13px; }
+.info-box strong { font-size: 12px; }
 
 .info-box p {
-  margin: 5px 0 0;
+  margin: 4px 0 0;
   color: var(--muted);
   font-size: 12px;
 }
@@ -353,21 +405,23 @@ footer {
   flex-wrap: wrap;
 }
 
-@media(max-width: 800px) {
-  .fellows, .submit-layout { grid-template-columns: 1fr; }
-  .hero { padding: 30px 24px; }
-  .brand img { width: 145px; }
-  .navtag { font-size: 10px; }
-  .docframe iframe { height: 340px; }
+@media (max-width: 900px) {
+  .fellows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .detail-layout { grid-template-columns: 1fr; }
+  .docframe iframe { height: 520px; }
 }
 
-@media(max-width: 480px) {
+@media (max-width: 560px) {
   main { padding: 24px 14px 48px; }
-  .nav { padding: 12px 14px; }
-  .hero { border-radius: 15px; }
-  .cardhead { padding: 15px; }
-  .docframe { padding: 8px; }
-  .docframe iframe { height: 320px; }
+  .nav { padding: 10px 14px; }
+  .brand img { width: 145px; height: 65px; }
+  .navtag { font-size: 9px; letter-spacing: 1px; }
+  .hero { padding: 28px 22px; border-radius: 15px; }
+  .fellows { grid-template-columns: 1fr; }
+  .fellow-tile { min-height: 160px; }
+  .docframe iframe { height: 480px; }
+  .panel { padding: 17px; }
+  .detail-head { align-items: flex-start; }
 }
 </style>
 </head>
@@ -375,7 +429,7 @@ footer {
 <body>
 <header class="topbar">
   <div class="nav">
-    <a class="brand" href="#" aria-label="TETR College of Business">
+    <a class="brand" href="#" id="homeLogo" aria-label="TETR Community Fellowship home">
       <img src="./logo.png" alt="TETR College of Business logo">
     </a>
     <div class="navtag">Community Fellowship</div>
@@ -383,78 +437,97 @@ footer {
 </header>
 
 <main>
-  <section class="hero">
-    <div class="eyebrow">TETR Community Fellowship</div>
-    <h1>Your work. Your ideas.<br>One shared space.</h1>
-    <p>
-      Access your current assignment brief, check the latest instructions,
-      and submit your work here. Assignment documents are embedded below
-      and reflect updates made to the original Google Docs.
-    </p>
-    <div class="hero-meta">
-      <span class="pill">5 fellows</span>
-      <span class="pill">Weekly assignment updates</span>
-      <span class="pill">Submission tracking</span>
-    </div>
-  </section>
-
-  <section class="section" id="assignments">
-    <div class="sectionhead">
-      <div>
-        <h2>Individual assignment briefs</h2>
-        <p>Choose your card to read the latest brief without leaving this page.</p>
-      </div>
-    </div>
-    <div class="fellows" id="fellowCards"></div>
-  </section>
-
-  <section class="section" id="submit">
-    <div class="sectionhead">
-      <div>
-        <h2>Submit your work</h2>
-        <p>Use the form below to log each completed assignment.</p>
+  <!-- HOME: only fellow cards appear here -->
+  <section id="homePage">
+    <div class="hero">
+      <div class="eyebrow">TETR Community Fellowship</div>
+      <h1>Your work. Your ideas.<br>One shared space.</h1>
+      <p>
+        Choose your name to open your personal assignment space.
+        You'll find your latest assignment brief and submission form together on your page.
+      </p>
+      <div class="hero-meta">
+        <span class="pill">5 fellows</span>
+        <span class="pill">Weekly assignment updates</span>
+        <span class="pill">Submission portal</span>
       </div>
     </div>
 
-    <div class="submit-layout">
-      <div class="panel">
-        <h3>Submission form</h3>
+    <section class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Choose your workspace</h2>
+          <p>Open your card to view your brief and submit your work.</p>
+        </div>
+      </div>
+      <div class="fellows" id="fellowCards"></div>
+    </section>
+  </section>
+
+  <!-- INDIVIDUAL WORKSPACE -->
+  <section id="detailPage" class="hidden">
+    <button type="button" class="back-btn" id="backButton">← All fellows</button>
+
+    <div class="detail-head">
+      <div class="avatar" id="detailAvatar"></div>
+      <div>
+        <h1 id="detailName"></h1>
+        <p>Individual assignment brief and submission form</p>
+      </div>
+    </div>
+
+    <div class="detail-layout">
+      <section class="panel">
+        <h2>Assignment brief</h2>
         <p class="subcopy">
-          Share a link to your completed work. Make sure the fellowship team
-          can access it.
+          This embedded document reflects updates made to the original Google Doc.
+        </p>
+
+        <div class="doc-actions">
+          <a class="btn" id="openDoc" target="_blank" rel="noopener noreferrer">
+            Open in Google Docs ↗
+          </a>
+        </div>
+
+        <div class="docframe">
+          <iframe id="docFrame" title="Assignment brief" loading="lazy"></iframe>
+        </div>
+
+        <p class="doc-note">
+          If the document does not load, check its sharing permissions or open it directly in Google Docs.
+        </p>
+      </section>
+
+      <aside class="panel">
+        <h2>Submit your work</h2>
+        <p class="subcopy">
+          Your name is pre-selected. Submit a separate entry for each deliverable you want tracked.
         </p>
 
         <form id="submissionForm">
           <div class="field">
-            <label for="studentName">Fellow *</label>
-            <select id="studentName" required>
-              <option value="">Select your name</option>
-              <option>Ariana</option>
-              <option>Lara</option>
-              <option>Otavio</option>
-              <option>Salem</option>
-              <option>Shiva</option>
-            </select>
+            <label for="studentName">Fellow</label>
+            <input id="studentName" name="studentName" readonly required>
           </div>
 
           <div class="field">
             <label for="email">Email address *</label>
-            <input id="email" type="email" placeholder="you@example.com" required>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
           </div>
 
           <div class="field">
             <label for="week">Week *</label>
-            <input id="week" type="text" placeholder="e.g. W2" required>
+            <input id="week" name="week" type="text" placeholder="e.g. W2" required>
           </div>
 
           <div class="field">
             <label for="assignmentTitle">Assignment *</label>
-            <input id="assignmentTitle" type="text" placeholder="Assignment title" required>
+            <input id="assignmentTitle" name="assignmentTitle" type="text" placeholder="Assignment title" required>
           </div>
 
           <div class="field">
             <label for="platform">Platform *</label>
-            <select id="platform" required>
+            <select id="platform" name="platform" required>
               <option value="">Select platform</option>
               <option>Drive</option>
               <option>LinkedIn</option>
@@ -467,12 +540,12 @@ footer {
 
           <div class="field">
             <label for="submissionUrl">Published work / submission link *</label>
-            <input id="submissionUrl" type="url" placeholder="https://..." required>
+            <input id="submissionUrl" name="submissionUrl" type="url" placeholder="https://..." required>
           </div>
 
           <div class="field">
             <label for="postStatus">Status *</label>
-            <select id="postStatus" required>
+            <select id="postStatus" name="postStatus" required>
               <option>Posted</option>
               <option>Yet To Post</option>
               <option>In Progress</option>
@@ -481,35 +554,16 @@ footer {
 
           <div class="field">
             <label for="notes">Notes (optional)</label>
-            <textarea id="notes" placeholder="Any context or notes for the team"></textarea>
+            <textarea id="notes" name="notes" placeholder="Any context for the team"></textarea>
           </div>
 
           <div class="message" id="formMessage" role="status"></div>
           <button type="submit" id="submitButton">Submit assignment</button>
         </form>
-      </div>
-
-      <aside class="panel">
-        <h3>Before you submit</h3>
 
         <div class="info-box">
-          <strong>1. Check the latest brief</strong>
-          <p>Open your fellow card above. The embedded Google Doc reflects edits to the original document.</p>
-        </div>
-
-        <div class="info-box">
-          <strong>2. Share access</strong>
-          <p>Make sure the fellowship team can access your submission link.</p>
-        </div>
-
-        <div class="info-box">
-          <strong>3. Log each deliverable</strong>
-          <p>Submit a separate entry for each assignment or platform deliverable you want tracked.</p>
-        </div>
-
-        <div class="info-box">
-          <strong>4. Submission tracking</strong>
-          <p>The form is ready for integration with your existing Weekly Tracker. Google Sheets saving will work only after the backend is connected.</p>
+          <strong>Before submitting</strong>
+          <p>Ensure the link is accessible to the fellowship team. Google Sheets tracking will activate once the backend is connected.</p>
         </div>
       </aside>
     </div>
@@ -524,104 +578,101 @@ footer {
 </footer>
 
 <script>
-/*
-  BACKEND:
-  Add your deployed Google Apps Script Web App URL ending in /exec.
-  Until configured, submissions will NOT be saved to Google Sheets.
-*/
+// Add your deployed Google Apps Script Web App URL ending in /exec here.
+// Until it is configured, submissions will NOT be saved to Google Sheets.
 const API_URL = "";
 
 const fellows = [
-  {
-    name: "Ariana",
-    id: "1te-6aBv2tazv7bWuTiFYQ59DC220JoirewMh9s_C-68"
-  },
-  {
-    name: "Lara",
-    id: "1e3qta4lK8LON7USg96BurewNs0AibDeo6dcnBz7ctzM"
-  },
-  {
-    name: "Otavio",
-    id: "1RaBipG0-MQkuMeeKJhMzvWEEGSTh_UGCUlofsb80DdU"
-  },
-  {
-    name: "Salem",
-    id: "1H2TJzQ_HIHC8GQxINQYbkvZNcM1zyazSjpkc9sITbPI"
-  },
-  {
-    name: "Shiva",
-    id: "1Kh5wnZEBcGEfBZpqPWBfzuYbtmClrea_jK74elLQdHg"
-  }
+  { name: "Ariana", id: "1te-6aBv2tazv7bWuTiFYQ59DC220JoirewMh9s_C-68" },
+  { name: "Lara", id: "1e3qta4lK8LON7USg96BurewNs0AibDeo6dcnBz7ctzM" },
+  { name: "Otavio", id: "1RaBipG0-MQkuMeeKJhMzvWEEGSTh_UGCUlofsb80DdU" },
+  { name: "Salem", id: "1H2TJzQ_HIHC8GQxINQYbkvZNcM1zyazSjpkc9sITbPI" },
+  { name: "Shiva", id: "1Kh5wnZEBcGEfBZpqPWBfzuYbtmClrea_jK74elLQdHg" }
 ];
 
+const homePage = document.getElementById("homePage");
+const detailPage = document.getElementById("detailPage");
 const cards = document.getElementById("fellowCards");
+let currentFellow = null;
 
+// Create separate fellow cards on the homepage.
 fellows.forEach(fellow => {
-  const card = document.createElement("article");
-  card.className = "fellow-card";
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "fellow-tile";
+  card.setAttribute("aria-label", `Open ${fellow.name}'s assignment page`);
 
-  const head = document.createElement("div");
-  head.className = "cardhead";
-
-  const person = document.createElement("div");
-  person.className = "person";
-
-  const avatar = document.createElement("div");
+  const avatar = document.createElement("span");
   avatar.className = "avatar";
   avatar.textContent = fellow.name[0];
 
-  const details = document.createElement("div");
-  const name = document.createElement("h3");
+  const name = document.createElement("span");
+  name.className = "tile-name";
   name.textContent = fellow.name;
 
-  const subtitle = document.createElement("small");
-  subtitle.textContent = "Individual assignment brief";
+  const subtitle = document.createElement("span");
+  subtitle.className = "tile-sub";
+  subtitle.textContent = "Community Fellow";
 
-  details.append(name, subtitle);
-  person.append(avatar, details);
+  const open = document.createElement("span");
+  open.className = "tile-open";
+  open.textContent = "Open workspace →";
 
-  const status = document.createElement("span");
-  status.className = "status";
-  status.textContent = "Latest brief";
-
-  head.append(person, status);
-
-  const actions = document.createElement("div");
-  actions.className = "doc-actions";
-
-  const open = document.createElement("a");
-  open.className = "btn";
-  open.href = `https://docs.google.com/document/d/${fellow.id}/edit`;
-  open.target = "_blank";
-  open.rel = "noopener noreferrer";
-  open.textContent = "Open in Google Docs ↗";
-
-  const focus = document.createElement("a");
-  focus.className = "btn primary";
-  focus.href = `#doc-${fellow.name.toLowerCase()}`;
-  focus.textContent = "View embedded brief";
-
-  actions.append(open, focus);
-
-  const frameWrap = document.createElement("div");
-  frameWrap.className = "docframe";
-
-  const iframe = document.createElement("iframe");
-  iframe.id = `doc-${fellow.name.toLowerCase()}`;
-  iframe.src = `https://docs.google.com/document/d/${fellow.id}/preview`;
-  iframe.title = `${fellow.name}'s assignment brief`;
-  iframe.loading = "lazy";
-
-  frameWrap.appendChild(iframe);
-
-  const note = document.createElement("div");
-  note.className = "doc-note";
-  note.textContent =
-    "If the brief does not load, check Google Docs sharing permissions or open it in Google Docs.";
-
-  card.append(head, actions, frameWrap, note);
+  card.append(avatar, name, subtitle, open);
+  card.addEventListener("click", () => openFellow(fellow));
   cards.appendChild(card);
 });
+
+function openFellow(fellow) {
+  currentFellow = fellow;
+
+  homePage.classList.add("hidden");
+  detailPage.classList.remove("hidden");
+
+  document.getElementById("detailAvatar").textContent = fellow.name[0];
+  document.getElementById("detailName").textContent = fellow.name;
+  document.getElementById("studentName").value = fellow.name;
+
+  document.getElementById("docFrame").src =
+    `https://docs.google.com/document/d/${fellow.id}/preview`;
+
+  document.getElementById("docFrame").title =
+    `${fellow.name}'s assignment brief`;
+
+  document.getElementById("openDoc").href =
+    `https://docs.google.com/document/d/${fellow.id}/edit`;
+
+  document.getElementById("formMessage").className = "message";
+
+  history.replaceState(null, "", `#${fellow.name.toLowerCase()}`);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showHome() {
+  detailPage.classList.add("hidden");
+  homePage.classList.remove("hidden");
+  document.getElementById("docFrame").src = "about:blank";
+  currentFellow = null;
+
+  history.replaceState(null, "", window.location.pathname);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById("backButton").addEventListener("click", showHome);
+
+document.getElementById("homeLogo").addEventListener("click", event => {
+  event.preventDefault();
+  showHome();
+});
+
+// Allow direct links like #ariana or #otavio.
+function routeFromHash() {
+  const name = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
+  const fellow = fellows.find(f => f.name.toLowerCase() === name);
+  if (fellow) openFellow(fellow);
+}
+
+window.addEventListener("load", routeFromHash);
 
 const form = document.getElementById("submissionForm");
 const message = document.getElementById("formMessage");
@@ -659,7 +710,7 @@ form.addEventListener("submit", async event => {
 
   if (!API_URL) {
     showMessage(
-      "The form is ready, but Google Sheets is not connected yet. Your submission has not been saved.",
+      "Google Sheets is not connected yet. Your submission has not been saved.",
       "error"
     );
     return;
@@ -669,26 +720,23 @@ form.addEventListener("submit", async event => {
   submitButton.textContent = "Submitting...";
 
   try {
-    /*
-      This request uses no-cors for a simple Apps Script endpoint.
-      The browser cannot verify the response or guarantee that the row
-      was saved. We will improve this when configuring the backend.
-    */
+    // no-cors cannot confirm the server's response. We will improve this
+    // when configuring and testing the Apps Script backend.
     await fetch(API_URL, {
       method: "POST",
       mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(data)
     });
 
     showMessage(
-      "Submission request sent. Check the tracker sheet to confirm that it was recorded.",
+      "Submission request sent. Please check the tracker sheet to confirm it was recorded.",
       "success"
     );
 
     form.reset();
+    document.getElementById("studentName").value =
+      currentFellow ? currentFellow.name : "";
   } catch (error) {
     showMessage(
       "Could not send your submission. Check your connection and try again.",
