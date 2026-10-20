@@ -60,34 +60,15 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
       color: var(--ink);
       text-decoration: none;
     }
 
-    .brand-mark {
-      background: var(--ink);
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: 6px;
-    }
-
-    .brand-name strong {
-      display: block;
-      font-size: 17px;
+    .brand-name {
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.3px;
-    }
-
-    .brand-name small {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--ink-soft);
+      color: var(--ink);
     }
 
     /* ---------- Home ---------- */
@@ -581,11 +562,7 @@
   <header class="topbar">
     <div class="container">
       <a class="brand" href="#" id="homeLogo">
-        <span class="brand-mark">TETR</span>
-        <span class="brand-name">
-          <strong>Community Fellowship</strong>
-          <small>College of Business</small>
-        </span>
+        <span class="brand-name">Community Fellowship</span>
       </a>
     </div>
   </header>
@@ -716,7 +693,7 @@
     </section>
   </main>
 
-  <footer class="footer">Community Fellowship · TETR College of Business</footer>
+  <footer class="footer">Community Fellowship</footer>
 
   <script>
     // Google Apps Script web app endpoint (unchanged).
