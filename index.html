@@ -23,8 +23,6 @@
       --border: #dde8e0;
       --danger: #b42318;
       --success: #11703f;
-      --amber: #9a5a00;
-      --amber-bg: #fff4dc;
       --shadow: 0 18px 40px rgba(6, 50, 30, 0.18);
     }
 
@@ -342,7 +340,7 @@
 
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
-    .chip, .status {
+    .chip {
       padding: 5px 11px;
       border-radius: 999px;
       font-size: 12px;
@@ -356,10 +354,6 @@
       color: var(--brand-dark);
       font-weight: 600;
     }
-
-    .status { font-weight: 600; }
-    .status-submitted { background: #e2f6e9; color: var(--success); }
-    .status-pending { background: var(--amber-bg); color: var(--amber); }
 
     .block-label {
       margin: 0 0 10px;
@@ -626,7 +620,7 @@
           <h1 id="detailFellowName">Fellow workspace</h1>
           <p>
             For each deliverable, check the posting guide first, then read the
-            brief. Submit every deliverable using the form on the right.
+            brief. Submit your work using the form on the right.
           </p>
           <a id="sourceDocLink" class="source-link" href="#" target="_blank" rel="noopener noreferrer">
             View source Google Doc ↗
@@ -649,7 +643,7 @@
           <section class="panel panel-sticky" aria-labelledby="submissionHeading">
             <div class="panel-header">
               <h2 id="submissionHeading">Submit your work</h2>
-              <p>Complete a separate submission for every deliverable.</p>
+              <p>You can make as many submissions as you need.</p>
             </div>
 
             <div class="form-content">
@@ -660,7 +654,6 @@
                   <li>Complete your deliverable.</li>
                   <li>Copy the link to your work and make sure it opens.</li>
                   <li>Make sure anyone with the link can view your work.</li>
-                  <li>Submit one entry for each deliverable.</li>
                 </ol>
               </div>
 
@@ -682,7 +675,8 @@
 
                 <div class="field">
                   <label for="assignment">Assignment <span class="required">*</span></label>
-                  <select id="assignment" name="assignment" required></select>
+                  <input id="assignment" name="assignment" type="text" placeholder="e.g. Assignment 1: Exploration" required>
+                  <small>Type the assignment name. Include its number (e.g. Assignment 1) so it links to the right assignment.</small>
                 </div>
 
                 <div class="field">
@@ -702,16 +696,6 @@
                   <label for="link">Link to your work <span class="required">*</span></label>
                   <input id="link" name="link" type="url" placeholder="https://..." inputmode="url" required>
                   <small>Double-check the link permissions before submitting.</small>
-                </div>
-
-                <div class="field">
-                  <label for="status">Status <span class="required">*</span></label>
-                  <select id="status" name="status" required>
-                    <option value="">Select status</option>
-                    <option value="Posted">Posted</option>
-                    <option value="Yet To Post">Yet To Post</option>
-                    <option value="In Progress">In Progress</option>
-                  </select>
                 </div>
 
                 <div class="field">
@@ -753,7 +737,9 @@
     const assignmentList = $("assignmentList");
     const fellowNameInput = $("fellowName");
     const weekSelect = $("week");
-    const assignmentSelect = $("assignment");
+    const assignmentInput = $("assignment");
+    const linkInput = $("link");
+    const notesInput = $("notes");
     const platformSelect = $("platform");
     const submissionForm = $("submissionForm");
     const submitButton = $("submitButton");
@@ -771,13 +757,6 @@
     function currentWeek() {
       if (!current.fellow) return null;
       return current.fellow.weeks.find((w) => w.week === current.week) || null;
-    }
-
-    function selectedAssignment() {
-      const week = currentWeek();
-      if (!week) return null;
-      const index = assignmentSelect.value;
-      return index === "" ? null : week.assignments[Number(index)] || null;
     }
 
     /* ---------- Load content from Apps Script ---------- */
@@ -834,14 +813,8 @@
     }
 
     function renderAssignment(a) {
-      const isSubmitted = a.status === "Submitted";
-      const statusClass = isSubmitted ? "status-submitted" : "status-pending";
-      const statusLabel = isSubmitted ? "Submitted" : "Not submitted yet";
-
       const platformChip = a.platform ? `<span class="chip platform">${esc(a.platform)}</span>` : "";
-      const deadlineChip = a.deadline
-        ? `<span class="chip">Due ${esc(a.deadline)}</span>`
-        : `<span class="chip">No deadline listed</span>`;
+      const deadlineChip = a.deadline ? `<span class="chip">Due ${esc(a.deadline)}</span>` : "";
 
       const guideLabel = "Posting guide" + (a.platform ? " · " + a.platform : "");
       const guide = a.guide && a.guide.length
@@ -877,7 +850,6 @@
           <div class="chips">
             ${platformChip}
             ${deadlineChip}
-            <span class="status ${statusClass}">${statusLabel}</span>
           </div>
           ${guide}
           ${brief}
@@ -894,9 +866,7 @@
       assignmentList.innerHTML = week.assignments.map(renderAssignment).join("");
     }
 
-    function syncForm() {
-      const week = currentWeek();
-
+    function syncWeekDropdown() {
       weekSelect.innerHTML =
         '<option value="">Select week</option>' +
         current.fellow.weeks
@@ -905,19 +875,13 @@
           .map((w) => `<option value="${esc(w.week)}">${esc(w.week)}</option>`)
           .join("");
       weekSelect.value = current.week || "";
-
-      assignmentSelect.innerHTML =
-        '<option value="">Select assignment</option>' +
-        (week ? week.assignments.map((a, i) =>
-          `<option value="${i}">${esc(a.num)}: ${esc(a.title)}</option>`).join("") : "");
-      assignmentSelect.value = "";
     }
 
     function setWeek(weekName) {
       current.week = weekName;
       renderWeekTabs();
       renderAssignments();
-      syncForm();
+      syncWeekDropdown();
       clearMessage();
     }
 
@@ -939,7 +903,7 @@
       } else {
         weekTabs.innerHTML = "";
         assignmentList.innerHTML = '<div class="empty-state">No assignments listed yet.</div>';
-        syncForm();
+        syncWeekDropdown();
       }
 
       history.pushState({ fellow: fellow.name }, "", "#" + encodeURIComponent(fellow.name.toLowerCase()));
@@ -1008,13 +972,6 @@
       if (weekSelect.value) setWeek(weekSelect.value);
     });
 
-    assignmentSelect.addEventListener("change", () => {
-      const a = selectedAssignment();
-      if (a && a.platform && [...platformSelect.options].some((o) => o.value === a.platform)) {
-        platformSelect.value = a.platform;
-      }
-    });
-
     window.addEventListener("popstate", routeFromHash);
     window.addEventListener("hashchange", routeFromHash);
 
@@ -1031,16 +988,13 @@
       if (!submissionForm.reportValidity()) return;
 
       const formData = new FormData(submissionForm);
-      const a = selectedAssignment();
-
       const data = {
         fellow: current.fellow.name,
         email: String(formData.get("email") || "").trim(),
         week: String(formData.get("week") || "").trim(),
-        assignment: a ? a.num + ": " + a.title : "",
+        assignment: String(formData.get("assignment") || "").trim(),
         platform: String(formData.get("platform") || "").trim(),
         link: String(formData.get("link") || "").trim(),
-        status: String(formData.get("status") || "").trim(),
         notes: String(formData.get("notes") || "").trim()
       };
 
@@ -1057,8 +1011,7 @@
       try {
         /*
          * Apps Script does not return a browser-readable response here,
-         * so the request uses no-cors. We confirm the result afterwards
-         * by reloading the Sheet-backed data.
+         * so the request uses no-cors. The Sheet is updated in the background.
          */
         await fetch(API_URL, {
           method: "POST",
@@ -1067,34 +1020,29 @@
           body: JSON.stringify(data)
         });
 
-        showMessage("Sending… confirming your submission.", "info");
-        await new Promise((resolve) => setTimeout(resolve, 2500));
-
         const keptName = current.fellow.name;
         const keptWeek = current.week;
-        const submittedNum = a ? a.num : "";
 
-        await loadFellows();
-        current.fellow = fellows.find((f) => f.name === keptName) || current.fellow;
-        current.week = keptWeek;
+        // Clear the per-submission fields, but keep fellow, email, and week
+        // so the fellow can submit again quickly.
+        assignmentInput.value = "";
+        linkInput.value = "";
+        notesInput.value = "";
+        platformSelect.value = data.platform;
 
-        const week = currentWeek();
-        const confirmed = !!(week && week.assignments.find(
-          (x) => x.num === submittedNum && x.status === "Submitted"
-        ));
-
-        submissionForm.reset();
-        fellowNameInput.value = keptName;
-        setWeek(keptWeek);
-
-        if (confirmed) {
-          showMessage("Your submission is confirmed and now shows as Submitted.", "success");
-        } else {
-          showMessage(
-            "Your submission was sent but hasn't appeared yet. Refresh this page in a minute to check. If it still doesn't show, contact the fellowship team.",
-            "info"
-          );
+        // Refresh the content in the background so any new "Your submission"
+        // links appear. If this fails, the submission was still sent.
+        try {
+          await new Promise((resolve) => setTimeout(resolve, 2500));
+          await loadFellows();
+          current.fellow = fellows.find((f) => f.name === keptName) || current.fellow;
+          current.week = keptWeek;
+          setWeek(keptWeek);
+        } catch (refreshError) {
+          console.error("Content refresh failed:", refreshError);
         }
+
+        showMessage("Your submission has been sent. You can submit another one anytime.", "success");
       } catch (error) {
         console.error("Submission request failed:", error);
         showMessage("We couldn't send your submission. Please check your connection and try again.", "error");
