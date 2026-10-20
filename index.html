@@ -1,135 +1,140 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#123d2c" />
+  <meta name="theme-color" content="#0b3d25" />
   <title>Community Fellowship</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --green: #174c36;
-      --green-dark: #103626;
-      --green-light: #eaf4ed;
-      --cream: #f7f8f4;
+      --ink: #0b3d25;
+      --ink-soft: #3d5a4a;
+      --muted: #64786c;
+      --brand: #0f8a4b;
+      --brand-dark: #0a6b3a;
+      --lime: #3ddc84;
+      --mint: #eef8f1;
       --white: #ffffff;
-      --text: #19251e;
-      --muted: #6b756e;
-      --border: #e2e8e2;
+      --border: #dde8e0;
       --danger: #b42318;
-      --success: #176b40;
-      --shadow: 0 12px 35px rgba(19, 57, 38, 0.07);
+      --success: #11703f;
+      --amber: #9a5a00;
+      --amber-bg: #fff4dc;
+      --shadow: 0 18px 40px rgba(6, 50, 30, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background: var(--cream);
-      color: var(--text);
-      font-family: "IBM Plex Sans", sans-serif;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Poppins", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(900px 500px at 50% -5%, #ffffff 0%, rgba(255, 255, 255, 0) 70%),
+        linear-gradient(180deg, #f4fbf6 0%, #dcefe3 20%, #b5d9c3 38%, #6fa987 58%, #2b6e4c 78%, #0d4a2e 100%);
+      background-attachment: fixed;
     }
 
-    button, input, select, textarea {
-      font: inherit;
-    }
+    button, input, select, textarea { font: inherit; }
+    a { color: var(--brand-dark); }
 
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible {
-      outline: 3px solid #9bc9a9;
+    button:focus-visible, a:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--lime);
       outline-offset: 2px;
     }
 
-    .topbar {
-      min-height: 76px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px 24px;
-      background: var(--green-dark);
-      color: white;
-    }
-
-    .brand-title {
-      color: white;
-      text-decoration: none;
-      text-align: center;
-      font-size: 25px;
-      line-height: 1.2;
-      font-weight: 600;
-      letter-spacing: -0.7px;
-    }
+    .topbar { padding: 22px 0 6px; }
 
     .container {
       width: min(1160px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    .home-hero {
-      padding: 68px 0 38px;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
     }
 
+    .brand-mark {
+      background: var(--ink);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .brand-name strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-name small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- Home ---------- */
+    .home-hero { padding: 56px 0 34px; }
+
     .eyebrow {
-      margin: 0 0 14px;
-      color: var(--green);
+      margin: 0 0 12px;
+      color: var(--brand);
       text-transform: uppercase;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 1.8px;
     }
 
-    h1, h2, h3, p {
-      overflow-wrap: anywhere;
-    }
-
     .home-hero h1 {
-      max-width: 720px;
       margin: 0;
-      font-size: clamp(36px, 5vw, 56px);
-      line-height: 1.07;
-      letter-spacing: -2px;
-      font-weight: 600;
+      max-width: 720px;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -1.6px;
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .hero-description {
-      max-width: 650px;
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.75;
+      max-width: 620px;
+      margin: 18px 0 0;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     .section-heading {
-      margin: 20px 0 20px;
-      font-size: 21px;
+      margin: 10px 0 18px;
+      font-size: 20px;
       font-weight: 600;
-      letter-spacing: -0.4px;
+      color: var(--ink);
+      letter-spacing: -0.3px;
     }
 
     .fellow-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      padding-bottom: 75px;
+      padding-bottom: 70px;
     }
 
     .fellow-card {
@@ -137,21 +142,20 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      min-height: 185px;
-      padding: 25px;
+      min-height: 180px;
+      padding: 24px;
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 20px;
       background: var(--white);
-      box-shadow: 0 3px 12px rgba(19, 57, 38, 0.025);
+      box-shadow: 0 6px 20px rgba(6, 50, 30, 0.08);
       text-align: left;
       cursor: pointer;
-      transition: transform 180ms ease, box-shadow 180ms ease,
-                  border-color 180ms ease;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
     .fellow-card:hover {
       transform: translateY(-4px);
-      border-color: #a9c7b2;
+      border-color: #9fd3b2;
       box-shadow: var(--shadow);
     }
 
@@ -160,186 +164,328 @@
       width: 48px;
       height: 48px;
       place-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       border-radius: 14px;
-      background: var(--green-light);
-      color: var(--green);
+      background: var(--mint);
+      color: var(--brand-dark);
       font-size: 18px;
       font-weight: 700;
     }
 
-    .fellow-card h3 {
-      margin: 0 0 7px;
-      font-size: 19px;
-      font-weight: 600;
-    }
+    .fellow-card h3 { margin: 0 0 6px; font-size: 19px; font-weight: 600; }
 
     .fellow-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.55;
     }
 
     .card-arrow {
       position: absolute;
-      top: 25px;
-      right: 24px;
-      color: var(--green);
-      font-size: 21px;
+      top: 22px;
+      right: 22px;
+      color: var(--brand);
+      font-size: 20px;
     }
 
-    .detail-page {
-      display: none;
-      padding: 28px 0 70px;
+    .loading {
+      grid-column: 1 / -1;
+      padding: 30px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink-soft);
+      font-size: 14px;
+      text-align: center;
     }
+
+    /* ---------- Detail ---------- */
+    .detail-page { display: none; padding: 24px 0 70px; }
 
     .back-button {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      margin: 0 0 24px;
-      padding: 9px 0;
+      margin: 0 0 20px;
+      padding: 8px 0;
       border: 0;
       background: transparent;
-      color: var(--green);
+      color: var(--ink);
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
     }
 
-    .detail-heading {
-      margin-bottom: 27px;
-    }
-
-    .detail-heading .eyebrow {
-      margin-bottom: 8px;
-    }
+    .detail-heading { margin-bottom: 24px; }
 
     .detail-heading h1 {
       margin: 0;
-      font-size: clamp(30px, 4vw, 42px);
+      font-size: clamp(30px, 4vw, 44px);
       letter-spacing: -1.2px;
-      font-weight: 600;
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .detail-heading p {
       margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 15px;
+      color: var(--ink-soft);
+      font-size: 14px;
       line-height: 1.65;
+      max-width: 680px;
     }
+
+    .source-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .source-link:hover { background: #fff; }
 
     .workspace {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
       align-items: start;
       gap: 22px;
     }
 
     .panel {
       min-width: 0;
-      overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: 17px;
+      border-radius: 20px;
       background: var(--white);
-      box-shadow: 0 4px 15px rgba(19, 57, 38, 0.035);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
+    .panel-sticky { position: sticky; top: 20px; }
+
     .panel-header {
-      padding: 20px 22px;
+      padding: 20px 24px;
       border-bottom: 1px solid var(--border);
     }
 
-    .panel-header h2 {
-      margin: 0;
-      font-size: 19px;
-      font-weight: 600;
-    }
+    .panel-header h2 { margin: 0; font-size: 18px; font-weight: 600; }
 
     .panel-header p {
-      margin: 7px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
     }
 
-    .document-frame {
-      display: block;
-      width: 100%;
-      height: 690px;
-      border: 0;
-      background: #fff;
+    .week-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
     }
 
-    .document-footer {
-      padding: 15px 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .text-link {
-      color: var(--green);
-      font-size: 14px;
+    .week-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 13px;
       font-weight: 600;
-      text-decoration: none;
+      cursor: pointer;
     }
 
-    .text-link:hover {
-      text-decoration: underline;
+    .week-tab[aria-pressed="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
     }
 
-    .form-content {
-      padding: 22px;
+    .latest-badge {
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 10px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 999px;
     }
+
+    .assignment {
+      padding: 26px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .assignment:last-child { border-bottom: 0; }
+
+    .assign-num {
+      margin: 0;
+      color: var(--brand);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+    }
+
+    .assignment h3 {
+      margin: 6px 0 12px;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip, .status {
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #f1f5f2;
+      color: var(--ink-soft);
+    }
+
+    .chip.platform {
+      background: #e3f5ea;
+      color: var(--brand-dark);
+      font-weight: 600;
+    }
+
+    .status { font-weight: 600; }
+    .status-submitted { background: #e2f6e9; color: var(--success); }
+    .status-pending { background: var(--amber-bg); color: var(--amber); }
+
+    .block-label {
+      margin: 0 0 10px;
+      color: var(--brand-dark);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    .guide {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--brand);
+      border-radius: 12px;
+      background: #f5faf7;
+    }
+
+    .guide h4, .brief h4 {
+      margin: 12px 0 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .guide h4:first-of-type { margin-top: 0; }
+
+    .guide ul, .brief ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .brief { margin-top: 18px; }
+
+    .brief p {
+      margin: 0 0 10px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .brief ul { margin-bottom: 10px; }
+
+    .example {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-left: 3px solid var(--lime);
+      border-radius: 10px;
+      background: #fafdfb;
+    }
+
+    .example strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    .example p { margin: 0; font-style: italic; }
+
+    .links {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .links a { font-size: 13px; font-weight: 600; word-break: break-all; }
+
+    .empty-state {
+      padding: 30px 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ---------- Form ---------- */
+    .form-content { padding: 22px 24px 24px; }
 
     .instructions {
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       padding: 16px;
       border-radius: 12px;
-      background: var(--green-light);
+      background: var(--mint);
     }
 
     .instructions h3 {
-      margin: 0 0 10px;
-      color: var(--green-dark);
-      font-size: 15px;
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 14px;
       font-weight: 600;
     }
 
     .instructions ol {
       margin: 0;
-      padding-left: 19px;
-      color: #395447;
+      padding-left: 18px;
+      color: var(--ink-soft);
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
-    .field {
-      margin-bottom: 18px;
-    }
+    .field { margin-bottom: 16px; }
 
     .field label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       font-size: 13px;
       font-weight: 600;
     }
 
-    .required {
-      color: var(--danger);
-    }
+    .required { color: var(--danger); }
 
     .field input,
     .field select,
     .field textarea {
       display: block;
       width: 100%;
-      min-height: 45px;
-      padding: 11px 12px;
-      border: 1px solid #d8e0d9;
-      border-radius: 9px;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid #cfdcd3;
+      border-radius: 10px;
       background: #fff;
-      color: var(--text);
+      color: var(--ink);
       font-size: 14px;
       transition: border-color 150ms ease;
     }
@@ -347,24 +493,21 @@
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
-      border-color: var(--green);
+      border-color: var(--brand);
       outline: none;
     }
 
     .field input[readonly] {
-      background: #f4f6f3;
+      background: #f3f7f4;
       color: #526257;
       cursor: default;
     }
 
-    .field textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
+    .field textarea { min-height: 88px; resize: vertical; }
 
     .field small {
       display: block;
-      margin-top: 7px;
+      margin-top: 6px;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
@@ -379,8 +522,8 @@
       gap: 10px;
       padding: 13px 18px;
       border: 0;
-      border-radius: 10px;
-      background: var(--green);
+      border-radius: 12px;
+      background: var(--ink);
       color: #fff;
       font-size: 14px;
       font-weight: 600;
@@ -388,145 +531,90 @@
       transition: background 150ms ease;
     }
 
-    .submit-button:hover:not(:disabled) {
-      background: var(--green-dark);
-    }
-
-    .submit-button:disabled {
-      opacity: 0.65;
-      cursor: wait;
-    }
+    .submit-button:hover:not(:disabled) { background: var(--brand-dark); }
+    .submit-button:disabled { opacity: 0.65; cursor: wait; }
 
     .form-message {
       display: none;
-      margin-top: 16px;
-      padding: 13px 14px;
-      border-radius: 9px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
       font-size: 13px;
       line-height: 1.6;
       overflow-wrap: anywhere;
     }
 
-    .form-message.success {
-      display: block;
-      background: #eaf6ed;
-      color: var(--success);
-    }
-
-    .form-message.error {
-      display: block;
-      background: #fff0ef;
-      color: var(--danger);
-    }
-
-    .form-message.info {
-      display: block;
-      background: #eef3f8;
-      color: #234b70;
-    }
+    .form-message.success { display: block; background: #eaf6ed; color: var(--success); }
+    .form-message.error { display: block; background: #fff0ef; color: var(--danger); }
+    .form-message.info { display: block; background: #eef3f8; color: #234b70; }
 
     .footer {
-      padding: 25px 20px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
+      padding: 26px 20px 34px;
+      color: rgba(255, 255, 255, 0.9);
       text-align: center;
       font-size: 12px;
+      letter-spacing: 0.3px;
     }
 
-    [hidden] {
-      display: none !important;
-    }
+    [hidden] { display: none !important; }
 
-    @media (max-width: 850px) {
-      .workspace {
-        grid-template-columns: 1fr;
-      }
-
-      .document-frame {
-        height: 620px;
-      }
-
-      .fellow-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    @media (max-width: 900px) {
+      .workspace { grid-template-columns: 1fr; }
+      .panel-sticky { position: static; }
+      .fellow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 540px) {
-      .topbar {
-        min-height: 67px;
-      }
-
-      .brand-title {
-        font-size: 22px;
-      }
-
-      .container {
-        width: calc(100% - 28px);
-      }
-
-      .home-hero {
-        padding: 45px 0 28px;
-      }
-
-      .home-hero h1 {
-        letter-spacing: -1.4px;
-      }
-
-      .hero-description {
-        font-size: 15px;
-      }
-
+      .container { width: calc(100% - 28px); }
+      .home-hero { padding: 36px 0 24px; }
+      .home-hero h1 { letter-spacing: -1px; }
+      .hero-description { font-size: 14px; }
       .fellow-grid {
         grid-template-columns: 1fr;
         gap: 12px;
-        padding-bottom: 50px;
+        padding-bottom: 46px;
       }
-
-      .fellow-card {
-        min-height: 155px;
-        padding: 20px;
-      }
-
-      .avatar {
-        margin-bottom: 14px;
-      }
-
-      .detail-page {
-        padding-top: 20px;
-      }
-
-      .panel-header,
-      .form-content {
-        padding: 18px;
-      }
-
-      .document-frame {
-        height: 540px;
-      }
+      .fellow-card { min-height: 150px; padding: 20px; }
+      .avatar { margin-bottom: 14px; }
+      .detail-page { padding-top: 16px; }
+      .panel-header, .form-content { padding-left: 18px; padding-right: 18px; }
+      .assignment { padding: 22px 18px; }
     }
   </style>
 </head>
 
 <body>
   <header class="topbar">
-    <a class="brand-title" href="#" id="homeLogo">Community Fellowship</a>
+    <div class="container">
+      <a class="brand" href="#" id="homeLogo">
+        <span class="brand-mark">TETR</span>
+        <span class="brand-name">
+          <strong>Community Fellowship</strong>
+          <small>College of Business</small>
+        </span>
+      </a>
+    </div>
   </header>
 
   <main>
+    <!-- HOME -->
     <section id="homePage" class="container">
       <div class="home-hero">
         <p class="eyebrow">Your fellowship workspace</p>
         <h1>Make your work<br>count.</h1>
         <p class="hero-description">
-          Find your weekly assignments, work on your deliverables, and submit
-          your work through your personal fellowship workspace.
+          Find your weekly assignments, see exactly how to post each one,
+          and submit your work through your personal fellowship workspace.
         </p>
       </div>
 
       <h2 class="section-heading">Choose your workspace</h2>
-      <div id="fellowCards" class="fellow-grid"></div>
+      <div id="fellowCards" class="fellow-grid">
+        <p class="loading">Loading workspaces…</p>
+      </div>
     </section>
 
+    <!-- DETAIL -->
     <section id="detailPage" class="detail-page">
       <div class="container">
         <button type="button" id="backButton" class="back-button">
@@ -537,57 +625,41 @@
           <p class="eyebrow">Your personal workspace</p>
           <h1 id="detailFellowName">Fellow workspace</h1>
           <p>
-            Review your assignment brief and submit each deliverable
-            using the form below.
+            For each deliverable, check the posting guide first, then read the
+            brief. Submit every deliverable using the form on the right.
           </p>
+          <a id="sourceDocLink" class="source-link" href="#" target="_blank" rel="noopener noreferrer">
+            View source Google Doc ↗
+          </a>
         </div>
 
         <div class="workspace">
-          <section class="panel" aria-labelledby="briefHeading">
+          <!-- LEFT: assignments -->
+          <section class="panel" aria-labelledby="assignmentsHeading">
             <div class="panel-header">
-              <h2 id="briefHeading">Your assignment brief</h2>
-              <p>
-                Check the latest instructions and requirements before
-                submitting your work.
-              </p>
+              <h2 id="assignmentsHeading">Your assignments</h2>
+              <p>Choose a week to see its assignments. The most recent week opens first.</p>
+              <div id="weekTabs" class="week-tabs" role="group" aria-label="Choose week"></div>
             </div>
 
-            <iframe
-              id="documentFrame"
-              class="document-frame"
-              title="Fellow assignment brief"
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin">
-            </iframe>
-
-            <div class="document-footer">
-              <a
-                id="openDocumentLink"
-                class="text-link"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer">
-                Open assignment brief in Google Docs ↗
-              </a>
-            </div>
+            <div id="assignmentList"></div>
           </section>
 
-          <section class="panel" aria-labelledby="submissionHeading">
+          <!-- RIGHT: submission -->
+          <section class="panel panel-sticky" aria-labelledby="submissionHeading">
             <div class="panel-header">
               <h2 id="submissionHeading">Submit your work</h2>
-              <p>
-                Complete a separate submission for every deliverable.
-              </p>
+              <p>Complete a separate submission for every deliverable.</p>
             </div>
 
             <div class="form-content">
               <div class="instructions">
                 <h3>Before you submit</h3>
                 <ol>
-                  <li>Read the assignment brief carefully.</li>
+                  <li>Read the posting guide and brief for the assignment.</li>
                   <li>Complete your deliverable.</li>
                   <li>Copy the link to your work and make sure it opens.</li>
-                  <li>Ensure anyone with the link can view your work.</li>
+                  <li>Make sure anyone with the link can view your work.</li>
                   <li>Submit one entry for each deliverable.</li>
                 </ol>
               </div>
@@ -600,42 +672,17 @@
 
                 <div class="field">
                   <label for="email">Email address <span class="required">*</span></label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    autocomplete="email"
-                    required>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
                 </div>
 
                 <div class="field">
                   <label for="week">Week <span class="required">*</span></label>
-                  <select id="week" name="week" required>
-                    <option value="">Select week</option>
-                    <option value="Week 1">Week 1</option>
-                    <option value="Week 2">Week 2</option>
-                    <option value="Week 3">Week 3</option>
-                    <option value="Week 4">Week 4</option>
-                    <option value="Week 5">Week 5</option>
-                    <option value="Week 6">Week 6</option>
-                    <option value="Week 7">Week 7</option>
-                    <option value="Week 8">Week 8</option>
-                    <option value="Week 9">Week 9</option>
-                    <option value="Week 10">Week 10</option>
-                    <option value="Week 11">Week 11</option>
-                    <option value="Week 12">Week 12</option>
-                  </select>
+                  <select id="week" name="week" required></select>
                 </div>
 
                 <div class="field">
-                  <label for="assignment">Assignment title <span class="required">*</span></label>
-                  <input
-                    id="assignment"
-                    name="assignment"
-                    type="text"
-                    placeholder="Enter assignment title"
-                    required>
+                  <label for="assignment">Assignment <span class="required">*</span></label>
+                  <select id="assignment" name="assignment" required></select>
                 </div>
 
                 <div class="field">
@@ -653,16 +700,8 @@
 
                 <div class="field">
                   <label for="link">Link to your work <span class="required">*</span></label>
-                  <input
-                    id="link"
-                    name="link"
-                    type="url"
-                    placeholder="https://..."
-                    inputmode="url"
-                    required>
-                  <small>
-                    Double-check the link permissions before submitting.
-                  </small>
+                  <input id="link" name="link" type="url" placeholder="https://..." inputmode="url" required>
+                  <small>Double-check the link permissions before submitting.</small>
                 </div>
 
                 <div class="field">
@@ -677,22 +716,14 @@
 
                 <div class="field">
                   <label for="notes">Additional notes (optional)</label>
-                  <textarea
-                    id="notes"
-                    name="notes"
-                    placeholder="Anything else you'd like us to know?"></textarea>
+                  <textarea id="notes" name="notes" placeholder="Anything else you'd like us to know?"></textarea>
                 </div>
 
                 <button id="submitButton" class="submit-button" type="submit">
                   Submit deliverable <span aria-hidden="true">→</span>
                 </button>
 
-                <div
-                  id="formMessage"
-                  class="form-message"
-                  role="status"
-                  aria-live="polite">
-                </div>
+                <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
               </form>
             </div>
           </section>
@@ -701,54 +732,70 @@
     </section>
   </main>
 
-  <footer class="footer">
-    Community Fellowship
-  </footer>
+  <footer class="footer">Community Fellowship · TETR College of Business</footer>
 
   <script>
-    // Google Apps Script web app endpoint.
+    // Google Apps Script web app endpoint (unchanged).
     const API_URL =
       "https://script.google.com/macros/s/AKfycby7Xa2zRzK87Oonvhd9-nzv9hutUlg8YRc2kWsihDmXgPA67ZVjX_2QCbGH9SxJ4QaQjA/exec";
 
-    const fellows = [
-      {
-        name: "Ariana",
-        id: "1te-6aBv2tazv7bWuTiFYQ59DC220JoirewMh9s_C-68"
-      },
-      {
-        name: "Lara",
-        id: "1e3qta4lK8LON7USg96BurewNs0AibDeo6dcnBz7ctzM"
-      },
-      {
-        name: "Otavio",
-        id: "1RaBipG0-MQkuMeeKJhMzvWEEGSTh_UGCUlofsb80DdU"
-      },
-      {
-        name: "Salem",
-        id: "1H2TJzQ_HIHC8GQxINQYbkvZNcM1zyazSjpkc9sITbPI"
-      },
-      {
-        name: "Shiva",
-        id: "1Kh5wnZEBcGEfBZpqPWBfzuYbtmClrea_jK74elLQdHg"
-      }
-    ];
+    // Filled from the Apps Script on page load (content comes from the Google Docs).
+    let fellows = [];
 
-    const homePage = document.getElementById("homePage");
-    const detailPage = document.getElementById("detailPage");
-    const fellowCards = document.getElementById("fellowCards");
-    const detailFellowName = document.getElementById("detailFellowName");
-    const fellowNameInput = document.getElementById("fellowName");
-    const documentFrame = document.getElementById("documentFrame");
-    const openDocumentLink = document.getElementById("openDocumentLink");
-    const submissionForm = document.getElementById("submissionForm");
-    const submitButton = document.getElementById("submitButton");
-    const formMessage = document.getElementById("formMessage");
+    const $ = (id) => document.getElementById(id);
 
-    let currentFellow = null;
+    const homePage = $("homePage");
+    const detailPage = $("detailPage");
+    const fellowCards = $("fellowCards");
+    const detailFellowName = $("detailFellowName");
+    const sourceDocLink = $("sourceDocLink");
+    const weekTabs = $("weekTabs");
+    const assignmentList = $("assignmentList");
+    const fellowNameInput = $("fellowName");
+    const weekSelect = $("week");
+    const assignmentSelect = $("assignment");
+    const platformSelect = $("platform");
+    const submissionForm = $("submissionForm");
+    const submitButton = $("submitButton");
+    const formMessage = $("formMessage");
+
+    let current = { fellow: null, week: null };
     let submissionInProgress = false;
 
+    function esc(value) {
+      return String(value).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    function currentWeek() {
+      if (!current.fellow) return null;
+      return current.fellow.weeks.find((w) => w.week === current.week) || null;
+    }
+
+    function selectedAssignment() {
+      const week = currentWeek();
+      if (!week) return null;
+      const index = assignmentSelect.value;
+      return index === "" ? null : week.assignments[Number(index)] || null;
+    }
+
+    /* ---------- Load content from Apps Script ---------- */
+    async function loadFellows() {
+      const response = await fetch(API_URL + "?action=content");
+      const data = await response.json();
+      if (!data.success) throw new Error("Content could not be loaded.");
+      fellows = data.fellows;
+    }
+
+    /* ---------- Home ---------- */
     function renderFellowCards() {
       fellowCards.innerHTML = "";
+
+      if (!fellows.length) {
+        fellowCards.innerHTML = '<p class="loading">No workspaces found. Please contact the fellowship team.</p>';
+        return;
+      }
 
       fellows.forEach((fellow) => {
         const card = document.createElement("button");
@@ -777,42 +824,134 @@
       });
     }
 
+    /* ---------- Detail ---------- */
+    function renderWeekTabs() {
+      weekTabs.innerHTML = current.fellow.weeks.map((w, i) => `
+        <button type="button" class="week-tab" data-week="${esc(w.week)}"
+          aria-pressed="${w.week === current.week}">
+          ${esc(w.week)}${i === 0 ? '<span class="latest-badge">Latest</span>' : ""}
+        </button>`).join("");
+    }
+
+    function renderAssignment(a) {
+      const isSubmitted = a.status === "Submitted";
+      const statusClass = isSubmitted ? "status-submitted" : "status-pending";
+      const statusLabel = isSubmitted ? "Submitted" : "Not submitted yet";
+
+      const platformChip = a.platform ? `<span class="chip platform">${esc(a.platform)}</span>` : "";
+      const deadlineChip = a.deadline
+        ? `<span class="chip">Due ${esc(a.deadline)}</span>`
+        : `<span class="chip">No deadline listed</span>`;
+
+      const guideLabel = "Posting guide" + (a.platform ? " · " + a.platform : "");
+      const guide = a.guide && a.guide.length
+        ? `<div class="guide">
+             <p class="block-label">${esc(guideLabel)}</p>
+             ${a.guide.map((g) => `
+               <h4>${esc(g.label)}</h4>
+               <ul>${g.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`).join("")}
+           </div>`
+        : "";
+
+      const b = a.brief || {};
+      const brief = `
+        <div class="brief">
+          <p class="block-label">Assignment brief</p>
+          ${(b.paras || []).map((p) => `<p>${esc(p)}</p>`).join("")}
+          ${b.points && b.points.length ? `<ul>${b.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
+          ${b.cover ? `<h4>What could you cover?</h4><p>${esc(b.cover)}</p>` : ""}
+          ${b.example ? `<div class="example"><strong>Example / direction</strong><p>${esc(b.example)}</p></div>` : ""}
+        </div>`;
+
+      const links = a.links && a.links.length
+        ? `<div class="links">
+             <p class="block-label">Linked posts</p>
+             ${a.links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join("")}
+           </div>`
+        : "";
+
+      return `
+        <article class="assignment">
+          <p class="assign-num">${esc(a.num)}</p>
+          <h3>${esc(a.title)}</h3>
+          <div class="chips">
+            ${platformChip}
+            ${deadlineChip}
+            <span class="status ${statusClass}">${statusLabel}</span>
+          </div>
+          ${guide}
+          ${brief}
+          ${links}
+        </article>`;
+    }
+
+    function renderAssignments() {
+      const week = currentWeek();
+      if (!week || !week.assignments.length) {
+        assignmentList.innerHTML = '<div class="empty-state">No assignments listed for this week yet.</div>';
+        return;
+      }
+      assignmentList.innerHTML = week.assignments.map(renderAssignment).join("");
+    }
+
+    function syncForm() {
+      const week = currentWeek();
+
+      weekSelect.innerHTML =
+        '<option value="">Select week</option>' +
+        current.fellow.weeks
+          .slice()
+          .reverse()
+          .map((w) => `<option value="${esc(w.week)}">${esc(w.week)}</option>`)
+          .join("");
+      weekSelect.value = current.week || "";
+
+      assignmentSelect.innerHTML =
+        '<option value="">Select assignment</option>' +
+        (week ? week.assignments.map((a, i) =>
+          `<option value="${i}">${esc(a.num)}: ${esc(a.title)}</option>`).join("") : "");
+      assignmentSelect.value = "";
+    }
+
+    function setWeek(weekName) {
+      current.week = weekName;
+      renderWeekTabs();
+      renderAssignments();
+      syncForm();
+      clearMessage();
+    }
+
     function openFellow(fellow) {
-      currentFellow = fellow;
+      current.fellow = fellow;
+      current.week = fellow.weeks.length ? fellow.weeks[0].week : null;
 
       homePage.style.display = "none";
       detailPage.style.display = "block";
 
       detailFellowName.textContent = fellow.name;
-      fellowNameInput.value = fellow.name;
-
-      const editUrl =
-        "https://docs.google.com/document/d/" + fellow.id + "/edit";
-
-      const previewUrl =
-        "https://docs.google.com/document/d/" + fellow.id + "/preview";
-
-      documentFrame.src = previewUrl;
-      openDocumentLink.href = editUrl;
+      sourceDocLink.href = "https://docs.google.com/document/d/" + fellow.docId + "/edit";
 
       submissionForm.reset();
       fellowNameInput.value = fellow.name;
-      clearMessage();
 
-      history.pushState({ fellow: fellow.name }, "", "#" +
-        encodeURIComponent(fellow.name.toLowerCase()));
+      if (current.week) {
+        setWeek(current.week);
+      } else {
+        weekTabs.innerHTML = "";
+        assignmentList.innerHTML = '<div class="empty-state">No assignments listed yet.</div>';
+        syncForm();
+      }
 
+      history.pushState({ fellow: fellow.name }, "", "#" + encodeURIComponent(fellow.name.toLowerCase()));
       window.scrollTo({ top: 0, behavior: "auto" });
     }
 
     function showHome(updateHistory = true) {
-      currentFellow = null;
+      current = { fellow: null, week: null };
 
       detailPage.style.display = "none";
       homePage.style.display = "block";
 
-      documentFrame.removeAttribute("src");
-      openDocumentLink.href = "#";
       submissionForm.reset();
       clearMessage();
 
@@ -824,44 +963,23 @@
     }
 
     function routeFromHash() {
-      const requestedName = decodeURIComponent(
-        window.location.hash.slice(1)
-      ).toLowerCase();
+      const requestedName = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
 
       if (!requestedName) {
         showHome(false);
         return;
       }
 
-      const fellow = fellows.find(
-        (item) => item.name.toLowerCase() === requestedName
-      );
+      const fellow = fellows.find((item) => item.name.toLowerCase() === requestedName);
 
       if (fellow) {
-        openFellowFromRoute(fellow);
+        openFellow(fellow);
       } else {
         showHome(false);
       }
     }
 
-    function openFellowFromRoute(fellow) {
-      currentFellow = fellow;
-
-      homePage.style.display = "none";
-      detailPage.style.display = "block";
-
-      detailFellowName.textContent = fellow.name;
-      fellowNameInput.value = fellow.name;
-
-      documentFrame.src =
-        "https://docs.google.com/document/d/" + fellow.id + "/preview";
-
-      openDocumentLink.href =
-        "https://docs.google.com/document/d/" + fellow.id + "/edit";
-
-      clearMessage();
-    }
-
+    /* ---------- Messages ---------- */
     function clearMessage() {
       formMessage.textContent = "";
       formMessage.className = "form-message";
@@ -872,13 +990,29 @@
       formMessage.className = "form-message " + type;
     }
 
-    document.getElementById("backButton").addEventListener("click", () => {
+    /* ---------- Events ---------- */
+    $("backButton").addEventListener("click", () => showHome());
+
+    $("homeLogo").addEventListener("click", (event) => {
+      event.preventDefault();
       showHome();
     });
 
-    document.getElementById("homeLogo").addEventListener("click", (event) => {
-      event.preventDefault();
-      showHome();
+    weekTabs.addEventListener("click", (event) => {
+      const tab = event.target.closest(".week-tab");
+      if (!tab) return;
+      setWeek(tab.dataset.week);
+    });
+
+    weekSelect.addEventListener("change", () => {
+      if (weekSelect.value) setWeek(weekSelect.value);
+    });
+
+    assignmentSelect.addEventListener("change", () => {
+      const a = selectedAssignment();
+      if (a && a.platform && [...platformSelect.options].some((o) => o.value === a.platform)) {
+        platformSelect.value = a.platform;
+      }
     });
 
     window.addEventListener("popstate", routeFromHash);
@@ -889,27 +1023,21 @@
 
       if (submissionInProgress) return;
 
-      if (!currentFellow) {
+      if (!current.fellow) {
         showMessage("Please select your workspace before submitting.", "error");
-        return;
-      }
-
-      if (!API_URL || !API_URL.endsWith("/exec")) {
-        showMessage(
-          "Submissions are temporarily unavailable. Please contact the fellowship team.",
-          "error"
-        );
         return;
       }
 
       if (!submissionForm.reportValidity()) return;
 
       const formData = new FormData(submissionForm);
+      const a = selectedAssignment();
+
       const data = {
-        fellow: currentFellow.name,
+        fellow: current.fellow.name,
         email: String(formData.get("email") || "").trim(),
         week: String(formData.get("week") || "").trim(),
-        assignment: String(formData.get("assignment") || "").trim(),
+        assignment: a ? a.num + ": " + a.title : "",
         platform: String(formData.get("platform") || "").trim(),
         link: String(formData.get("link") || "").trim(),
         status: String(formData.get("status") || "").trim(),
@@ -928,44 +1056,66 @@
 
       try {
         /*
-         * Apps Script ContentService does not provide a straightforward
-         * browser-readable CORS response. This request sends JSON as text/plain
-         * and uses no-cors, so the browser cannot confirm the server's result.
+         * Apps Script does not return a browser-readable response here,
+         * so the request uses no-cors. We confirm the result afterwards
+         * by reloading the Sheet-backed data.
          */
         await fetch(API_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(data)
         });
 
-        showMessage(
-          "Your submission request has been sent. Please contact the fellowship team if you need confirmation that it was received.",
-          "info"
-        );
+        showMessage("Sending… confirming your submission.", "info");
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+
+        const keptName = current.fellow.name;
+        const keptWeek = current.week;
+        const submittedNum = a ? a.num : "";
+
+        await loadFellows();
+        current.fellow = fellows.find((f) => f.name === keptName) || current.fellow;
+        current.week = keptWeek;
+
+        const week = currentWeek();
+        const confirmed = !!(week && week.assignments.find(
+          (x) => x.num === submittedNum && x.status === "Submitted"
+        ));
 
         submissionForm.reset();
-        fellowNameInput.value = currentFellow.name;
+        fellowNameInput.value = keptName;
+        setWeek(keptWeek);
 
+        if (confirmed) {
+          showMessage("Your submission is confirmed and now shows as Submitted.", "success");
+        } else {
+          showMessage(
+            "Your submission was sent but hasn't appeared yet. Refresh this page in a minute to check. If it still doesn't show, contact the fellowship team.",
+            "info"
+          );
+        }
       } catch (error) {
         console.error("Submission request failed:", error);
-
-        showMessage(
-          "We couldn't send your submission. Please check your connection and try again.",
-          "error"
-        );
+        showMessage("We couldn't send your submission. Please check your connection and try again.", "error");
       } finally {
         submissionInProgress = false;
         submitButton.disabled = false;
-        submitButton.innerHTML =
-          'Submit deliverable <span aria-hidden="true">→</span>';
+        submitButton.innerHTML = 'Submit deliverable <span aria-hidden="true">→</span>';
       }
     });
 
-    renderFellowCards();
-    routeFromHash();
+    /* ---------- Start ---------- */
+    loadFellows()
+      .then(() => {
+        renderFellowCards();
+        routeFromHash();
+      })
+      .catch((error) => {
+        console.error(error);
+        fellowCards.innerHTML =
+          '<p class="loading">We couldn’t load the workspaces right now. Please refresh the page.</p>';
+      });
   </script>
 </body>
 </html>
